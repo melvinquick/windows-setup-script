@@ -1,7 +1,13 @@
+########## TO-DO LIST ##########
+# 1. Add a check to see if scoop is installed already
+# 2. Add a check to see if Winget is installed already
+# 3. Add call to reopen PowerShell after installing git so that the Scoop Buckets can be added properly
+
 # Variables
 $userInput = ""
 $downloadDir = "~\Downloads"
 $desktopDir = "~\Desktop"
+$localAppDataDir = "~\AppData\Local"
 $wingetUrl = "https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle"
 $wingetInstaller = "Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle"
 $configUrl = "https://github.com/cquick00/ConfigFiles.git"
@@ -12,7 +18,7 @@ $powershellConfigDir = "~\Documents\PowerShell"
 $starshipConfig = "$configDir\Starship\starship.toml"
 $starshipConfigDir = "~\.config"
 $wingetConfig = "$configDir\Winget\settings.json"
-$wingetConfigDir = "%LOCALAPPDATA%\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState"
+$wingetConfigDir = "$localAppDataDir\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState"
 
 
 ########## INTRODUCTION ##########
