@@ -1,8 +1,3 @@
-########## TO-DO LIST ##########
-# 1. Add a check to see if scoop is installed already
-# 2. Add a check to see if Winget is installed already
-# 3. Add call to reopen PowerShell after installing git so that the Scoop Buckets can be added properly
-
 # Variables
 $userInput = ""
 $downloadDir = "~\Downloads"
@@ -74,6 +69,12 @@ if ($userInput.ToLower() -eq "y") {
     winget install -e --id Microsoft.VisualStudioCode
 
 
+    ########## RELAUNCH ##########
+
+    # Re-launch PowerShell so that Git works for the Scoop Section
+    pwsh.exe -NoLogo -WorkingDirectory $downloadDir
+
+
     ########## SCOOP ##########
 
     # Install
@@ -108,6 +109,9 @@ if ($userInput.ToLower() -eq "y") {
 
     # Delete downloads
     Get-ChildItem $downloadDir | Remove-Item -Force -Recurse
+
+    # Exit secondary PowerShell Session
+    Exit
 
 }
 
