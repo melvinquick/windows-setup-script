@@ -1,6 +1,7 @@
 # Variables
 $userInput = ""
 $downloadDir = "~\Downloads"
+$desktopDir = "~\Desktop"
 $wingetUrl = "https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle"
 $wingetInstaller = "Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle"
 $configUrl = "https://github.com/cquick00/ConfigFiles.git"
@@ -12,7 +13,7 @@ $starshipConfig = "$configDir\Starship\starship.toml"
 $starshipConfigDir = "~\.config"
 $wingetConfig = "$configDir\Winget\settings.json"
 $wingetConfigDir = "%LOCALAPPDATA%\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState"
- 
+
 
 ########## WELCOME MESSAGE AND INTRODUCTION ##########
 
@@ -37,9 +38,6 @@ if ($userInput.ToLower() -eq "y") {
     # Install
     Import-Module -Name Appx -UseWindowsPowerShell
     Add-AppxPackage -Path $wingetInstaller
-
-    # Remove downloaded file
-    Remove-Item -Path $wingetInstaller
 
     # Install programs
     winget install -e --id 7zip.7zip
@@ -96,8 +94,14 @@ if ($userInput.ToLower() -eq "y") {
     Copy-Item $starshipConfig -Destination $starshipConfigDir
     Copy-Item $wingetConfig -Destination $wingetConfigDir
 
-    # Remove downloaded repo
-    Remove-Item -Path $configDir -Force -Recurse
+
+    ##### CLEANUP #####
+
+    # Delete desktop icons
+    Get-ChildItem $desktopDir | Remove-Item -Force -Recurse
+
+    # Delete downloads
+    Get-ChildItem $downloadDir | Remove-Item -Force -Recurse
 
 }
 
