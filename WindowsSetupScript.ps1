@@ -15,7 +15,7 @@ $wingetConfig = "$configDir\Winget\settings.json"
 $wingetConfigDir = "%LOCALAPPDATA%\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState"
 
 
-########## WELCOME MESSAGE AND INTRODUCTION ##########
+########## INTRODUCTION ##########
 
 # Main
 Write-Host "`nDISCLAIMER: NEVER RUN SCRIPTS YOU FIND ON THE INTERNET BEFORE FIRST READING THROUGH THEM!`n" -ForegroundColor Red
