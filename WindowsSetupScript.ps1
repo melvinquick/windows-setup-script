@@ -1,7 +1,18 @@
 # Variables
 $userInput = ""
-$wingetURL = "https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle"
-$wingetOutfile = "~\Downloads\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle"
+$downloadDir = "~\Downloads"
+$wingetUrl = "https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle"
+$wingetInstaller = "Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle"
+$configUrl = "https://github.com/cquick00/ConfigFiles.git"
+$configDir = "$downloadDir\ConfigFiles"
+$powershellProfileConfig = "$configDir\PowerShell\Microsoft.PowerShell_profile.ps1"
+$powershellConfig = "$configDir\PowerShell\powershell.config.json"
+$powershellConfigDir = "~\Documents\PowerShell"
+$starshipConfig = "$configDir\Starship\starship.toml"
+$starshipConfigDir = "~\.config"
+$wingetConfig = "$configDir\Winget\settings.json"
+$wingetConfigDir = "%LOCALAPPDATA%\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState"
+ 
 
 ########## WELCOME MESSAGE AND INTRODUCTION ##########
 
@@ -14,17 +25,21 @@ $userInput = Read-Host "Would you like to run the setup? (y/n)"
 
 if ($userInput.ToLower() -eq "y") {
 
+    # Set working directory for script
+    Set-Location $downloadDir
+
+
     ########## WINGET ##########
 
     # Download
-    Invoke-WebRequest -Uri $wingetURL -OutFile $wingetOutfile 
+    Invoke-WebRequest -Uri $wingetUrl -OutFile $wingetInstaller 
 
     # Install
     Import-Module -Name Appx -UseWindowsPowerShell
-    Add-AppxPackage -Path "~\Downloads\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle"
+    Add-AppxPackage -Path $wingetInstaller
 
     # Remove downloaded file
-    Remove-Item -Path "~\Downloads\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle"
+    Remove-Item -Path $wingetInstaller
 
     # Install programs
     winget install -e --id 7zip.7zip
@@ -47,7 +62,7 @@ if ($userInput.ToLower() -eq "y") {
     winget install -e --id dangeredwolf.ModernDeck
     winget install -e --id Microsoft.PowerShell
     winget install -e --id Python.Python.3
-    winget install --id Starship.Starship
+    winget install -e --id Starship.Starship
     winget install -e --id Valve.Steam
     winget install -e --id Streamlabs.Streamlabs
     winget install -e --id Ubisoft.Connect
@@ -72,12 +87,17 @@ if ($userInput.ToLower() -eq "y") {
     ########## CONFIGS ##########
 
     # Git clone repo
-
+    git clone $configUrl
+    
 
     # Move files to correct location
-
+    Copy-Item $powershellProfileConfig -Destination $powershellConfigDir
+    Copy-Item $powershellConfig -Destination $powershellConfigDir
+    Copy-Item $starshipConfig -Destination $starshipConfigDir
+    Copy-Item $wingetConfig -Destination $wingetConfigDir
 
     # Remove downloaded repo
+    Remove-Item -Path $configDir -Force -Recurse
 
 }
 
