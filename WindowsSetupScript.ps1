@@ -1,19 +1,27 @@
 # Variables
-$userInput = ""
-$downloadDir = "~\Downloads"
-$desktopDir = "~\Desktop"
-$localAppDataDir = "~\AppData\Local"
-$wingetUrl = "https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle"
-$wingetInstaller = "Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle"
-$configUrl = "https://github.com/cquick00/ConfigFiles.git"
+$caskaydiaDir = "$downloadDir\CascadiaCode"
+$caskaydiaUrl = "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/CascadiaCode.zip"
+$caskaydiaZipDir = "$downloadDir\CascadiaCode.zip"
 $configDir = "$downloadDir\ConfigFiles"
-$powershellProfileConfig = "$configDir\PowerShell\Microsoft.PowerShell_profile.ps1"
+$configUrl = "https://github.com/cquick00/ConfigFiles.git"
+$desktopDir = "~\Desktop"
+$documentDir = "~\Documents"
+$downloadDir = "~\Downloads"
+$fonts = Get-ChildItem $caskaydiaDir | Where-Object -Property Name -Like "*Windows Compatible*"
+$fontsDir = "C:\Windows\Fonts"
+$isInstalled = $false
+$localAppDataDir = "~\AppData\Local"
 $powershellConfig = "$configDir\PowerShell\powershell.config.json"
 $powershellConfigDir = "~\Documents\PowerShell"
+$powershellConfigDirExists = $false
+$powershellProfileConfig = "$configDir\PowerShell\Microsoft.PowerShell_profile.ps1"
 $starshipConfig = "$configDir\Starship\starship.toml"
 $starshipConfigDir = "~\.config"
+$userInput = ""
 $wingetConfig = "$configDir\Winget\settings.json"
 $wingetConfigDir = "$localAppDataDir\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState"
+$wingetInstaller = "Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle"
+$wingetUrl = "https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle"
 
 
 ########## INTRODUCTION ##########
@@ -33,12 +41,21 @@ if ($userInput.ToLower() -eq "y") {
 
     ########## WINGET ##########
 
-    # Download
-    Invoke-WebRequest -Uri $wingetUrl -OutFile $wingetInstaller 
+    # Check if Winget is installed already
+    if (winget -v) {
+        $isInstalled = $true
+    }
 
-    # Install
-    Import-Module -Name Appx -UseWindowsPowerShell
-    Add-AppxPackage -Path $wingetInstaller
+    if ($isInstalled -eq $false) {
+
+        # Download
+        Invoke-WebRequest -Uri $wingetUrl -OutFile $wingetInstaller 
+
+        # Install
+        Import-Module -Name Appx -UseWindowsPowerShell
+        Add-AppxPackage -Path $wingetInstaller
+
+    }
 
     # Install programs
     winget install -e --id 7zip.7zip
@@ -77,9 +94,20 @@ if ($userInput.ToLower() -eq "y") {
 
     ########## SCOOP ##########
 
-    # Install
-    Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
-    Invoke-RestMethod get.scoop.sh | Invoke-Expression
+    # Check if Scoop is installed already
+    $isInstalled = $false
+
+    if (scoop -v) {
+        $isInstalled = $true
+    }
+
+    if ($isInstalled -eq $false) {
+
+        # Install
+        Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+        Invoke-RestMethod get.scoop.sh | Invoke-Expression
+
+    }
 
     # Add buckets
     scoop bucket add main
@@ -93,6 +121,13 @@ if ($userInput.ToLower() -eq "y") {
 
     # Git clone repo
     git clone $configUrl
+
+    # Check for PowerShell Config Directory
+    $powershellConfigDirExists = Test-Path -Path $powershellConfigDir
+
+    if ($powershellConfigDirExists -eq $false) {
+        New-Item -Name PowerShell -Path $documentDir -ItemType Directory
+    }
     
 
     # Move files to correct location
@@ -100,6 +135,20 @@ if ($userInput.ToLower() -eq "y") {
     Copy-Item $powershellConfig -Destination $powershellConfigDir
     Copy-Item $starshipConfig -Destination $starshipConfigDir
     Copy-Item $wingetConfig -Destination $wingetConfigDir
+
+
+    ########## FONT ##########
+
+    # Download Caskaydia Cove NF
+    Invoke-WebRequest -Uri $caskaydiaUrl -OutFile $caskaydiaZipDir
+
+    # Extract Caskaydia Cove NF
+    Expand-Archive -Path $caskaydiaZipDir -DestinationPath $caskaydiaDir
+
+    # Install all Windows Compatible versions in the downloaded folder
+    foreach ($font in $fonts) {
+        Copy-Item $font -Destination $fontsDir
+    }
 
 
     ##### CLEANUP #####
