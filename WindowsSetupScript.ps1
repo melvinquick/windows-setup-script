@@ -1,5 +1,5 @@
 # Variables
-$caskaydiaDir = "$downloadDir\CascadiaCode"
+$caskaydiaDir = ""
 $caskaydiaUrl = "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/CascadiaCode.zip"
 $caskaydiaZipDir = "$downloadDir\CascadiaCode.zip"
 $configDir = "$downloadDir\ConfigFiles"
@@ -163,6 +163,7 @@ if ($userInput.ToLower() -eq "y") {
     # Download Caskaydia Cove NF
     Write-Host "Downloading, extracting, and installing the Caskaydia Cove Font from Nerd Fonts."
     Invoke-WebRequest -Uri $caskaydiaUrl -OutFile $caskaydiaZipDir
+    $caskaydiaDir = "$downloadDir\CascadiaCode"
 
     # Extract Caskaydia Cove NF
     Expand-Archive -Path $caskaydiaZipDir -DestinationPath $caskaydiaDir
