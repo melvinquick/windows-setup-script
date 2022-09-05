@@ -25,6 +25,6 @@ This is a script for setting up Windows to how I like it on a fresh install.
 
   - Add a check to see if Winget is installed already :white_check_mark:
 
-- Information For User
+- Information For User :white_check_mark:
 
-  - Add Write-Host commands for each new section so that the user knows where they're at in the script
+  - Add Write-Host commands for each new section so that the user knows where they're at in the script :white_check_mark:
