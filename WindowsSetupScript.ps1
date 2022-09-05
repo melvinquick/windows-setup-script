@@ -8,7 +8,9 @@ $desktopDir = "~\Desktop"
 $documentDir = "~\Documents"
 $downloadDir = "~\Downloads"
 $fonts = Get-ChildItem $caskaydiaDir | Where-Object -Property Name -Like "*Windows Compatible*"
-$fontsDir = "C:\Windows\Fonts"
+$fontsDir = (New-Object -ComObject Shell.Application).Namespace(0x14)
+$fontExists = $false
+$fontName = ""
 $isInstalled = $false
 $localAppDataDir = "~\AppData\Local"
 $powershellConfig = "$configDir\PowerShell\powershell.config.json"
@@ -36,17 +38,22 @@ $userInput = Read-Host "Would you like to run the setup? (y/n)"
 if ($userInput.ToLower() -eq "y") {
 
     # Set working directory for script
+    Write-Host "`nSetting the working directory for the script."
     Set-Location $downloadDir
 
 
     ########## WINGET ##########
+    Write-Host "`n########## WINGET ##########" -ForegroundColor Green
 
     # Check if Winget is installed already
+    Write-Host "Checking to see if Winget is installed."
+
     if (winget -v) {
         $isInstalled = $true
     }
 
     if ($isInstalled -eq $false) {
+        Write-Host "Winget was not installed. Downloading and installing now."
 
         # Download
         Invoke-WebRequest -Uri $wingetUrl -OutFile $wingetInstaller 
@@ -58,6 +65,8 @@ if ($userInput.ToLower() -eq "y") {
     }
 
     # Install programs
+    Write-Host "Winget is now installed."
+    Write-Host "Now installing programs via Winget."
     winget install -e --id 7zip.7zip
     winget install -e --id Amazon.Games
     winget install -e --id Lexikos.AutoHotkey
@@ -87,14 +96,18 @@ if ($userInput.ToLower() -eq "y") {
 
 
     ########## RELAUNCH ##########
+    Write-Host "`n########## RELAUNCH ##########" -ForegroundColor Green
 
     # Re-launch PowerShell so that Git works for the Scoop Section
+    Write-Host "Launching new PowerShell instance so that Git is available for the Scoop Section."
     pwsh.exe -NoLogo -WorkingDirectory $downloadDir
 
 
     ########## SCOOP ##########
+    Write-Host "`n########## SCOOP ##########" -ForegroundColor Green
 
     # Check if Scoop is installed already
+    Write-Host "Checking to see if Scoop is installed."
     $isInstalled = $false
 
     if (scoop -v) {
@@ -102,7 +115,7 @@ if ($userInput.ToLower() -eq "y") {
     }
 
     if ($isInstalled -eq $false) {
-
+        Write-Host "Scoop was not installed. Downloading and installing now."
         # Install
         Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
         Invoke-RestMethod get.scoop.sh | Invoke-Expression
@@ -110,6 +123,8 @@ if ($userInput.ToLower() -eq "y") {
     }
 
     # Add buckets
+    Write-Host "Scoop is now installed."
+    Write-Host "Now adding buckets and installing programs via Scoop."
     scoop bucket add main
     scoop bucket add extras
 
@@ -118,11 +133,14 @@ if ($userInput.ToLower() -eq "y") {
 
 
     ########## CONFIGS ##########
+    Write-Host "`n########## CONFIGS ##########" -ForegroundColor Green
 
     # Git clone repo
+    Write-Host "Downloading the config files from GitHub."
     git clone $configUrl
 
     # Check for PowerShell Config Directory
+    Write-Host "Checking for the PowerShell Config Directory and creating it if it doesn't exist."
     $powershellConfigDirExists = Test-Path -Path $powershellConfigDir
 
     if ($powershellConfigDirExists -eq $false) {
@@ -131,6 +149,7 @@ if ($userInput.ToLower() -eq "y") {
     
 
     # Move files to correct location
+    Write-Host "Moving config files to their correct locations."
     Copy-Item $powershellProfileConfig -Destination $powershellConfigDir
     Copy-Item $powershellConfig -Destination $powershellConfigDir
     Copy-Item $starshipConfig -Destination $starshipConfigDir
@@ -138,8 +157,10 @@ if ($userInput.ToLower() -eq "y") {
 
 
     ########## FONT ##########
+    Write-Host "`n########## FONT ##########" -ForegroundColor Green
 
     # Download Caskaydia Cove NF
+    Write-Host "Downloading, extracting, and installing the Caskaydia Cove Font from Nerd Fonts."
     Invoke-WebRequest -Uri $caskaydiaUrl -OutFile $caskaydiaZipDir
 
     # Extract Caskaydia Cove NF
@@ -147,7 +168,12 @@ if ($userInput.ToLower() -eq "y") {
 
     # Install all Windows Compatible versions in the downloaded folder
     foreach ($font in $fonts) {
-        Copy-Item $font -Destination $fontsDir
+        $fontName = $font.Name
+        $fontExists = Test-Path -Path $fontsDir\$fontName
+
+        if ($fontExists -eq $false) {
+            Get-ChildItem $font | ForEach-Object { $fontsDir.CopyHere($_.FullName) }
+        }
     }
 
 

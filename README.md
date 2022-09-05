@@ -8,7 +8,7 @@ This is a script for setting up Windows to how I like it on a fresh install.
 
 - Caskaydia Cove Font
 
-  - Get all Windows Compatible Sets of Caskaydia Cove Nerd Font installed
+  - Get all Windows Compatible Sets of Caskaydia Cove Nerd Font installed :white_check_mark:
   - Set default font in PowerShell to Caskaydia Cove Nerd Font
 
 - PowerShell :white_check_mark:
@@ -24,3 +24,7 @@ This is a script for setting up Windows to how I like it on a fresh install.
 - Winget :white_check_mark:
 
   - Add a check to see if Winget is installed already :white_check_mark:
+
+- Information For User
+
+  - Add Write-Host commands for each new section so that the user knows where they're at in the script
