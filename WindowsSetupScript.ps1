@@ -7,10 +7,10 @@ $configUrl = "https://github.com/cquick00/ConfigFiles.git"
 $desktopDir = "~\Desktop"
 $documentDir = "~\Documents"
 $downloadDir = "~\Downloads"
-$fonts = Get-ChildItem $caskaydiaDir | Where-Object -Property Name -Like "*Windows Compatible*"
-$fontsDir = (New-Object -ComObject Shell.Application).Namespace(0x14)
 $fontExists = $false
 $fontName = ""
+$fonts = Get-ChildItem $caskaydiaDir | Where-Object -Property Name -Like "*Windows Compatible*"
+$fontsDir = (New-Object -ComObject Shell.Application).Namespace(0x14)
 $isInstalled = $false
 $localAppDataDir = "~\AppData\Local"
 $powershellConfig = "$configDir\PowerShell\powershell.config.json"
@@ -100,7 +100,8 @@ if ($userInput.ToLower() -eq "y") {
 
     # Re-launch PowerShell so that Git works for the Scoop Section
     Write-Host "Launching new PowerShell instance so that Git is available for the Scoop Section."
-    pwsh.exe -NoLogo -WorkingDirectory $downloadDir
+    powershell.exe -NoLogo
+    Set-Location $downloadDir
 
 
     ########## SCOOP ##########
