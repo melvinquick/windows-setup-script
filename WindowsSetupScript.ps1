@@ -67,8 +67,8 @@ if ($userInput.ToLower() -eq "y") {
         ########## REFRESH ENVIRONMENT ##########
         Write-Host "`n########## REFRESH ENVIRONMENT ##########" -ForegroundColor Green
 
-        # Refresh PowerShell so that Git works for the Scoop Section
-        Write-Host "Refreshing the environment so that Git is available for the Scoop Section."
+        # Refresh PowerShell so that Winget works for the Install Section
+        Write-Host "Refreshing the environment so that Winget is available for the Install Section."
         $refreshEnv
 
     }
