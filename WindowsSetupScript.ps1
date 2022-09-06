@@ -17,6 +17,8 @@ $powershellConfig = "$configDir\PowerShell\powershell.config.json"
 $powershellConfigDir = "~\Documents\PowerShell"
 $powershellConfigDirExists = $false
 $powershellProfileConfig = "$configDir\PowerShell\Microsoft.PowerShell_profile.ps1"
+$refreshEnv = $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+$scriptDir = "$downloadDir\WindowsSetupScript-main"
 $starshipConfig = "$configDir\Starship\starship.toml"
 $starshipConfigDir = "~\.config"
 $userInput = ""
@@ -95,13 +97,12 @@ if ($userInput.ToLower() -eq "y") {
     winget install -e --id Microsoft.VisualStudioCode
 
 
-    ########## RELAUNCH ##########
-    Write-Host "`n########## RELAUNCH ##########" -ForegroundColor Green
+    ########## REFRESH ENVIRONMENT ##########
+    Write-Host "`n########## REFRESH ENVIRONMENT ##########" -ForegroundColor Green
 
-    # Re-launch PowerShell so that Git works for the Scoop Section
-    Write-Host "Launching new PowerShell instance so that Git is available for the Scoop Section."
-    powershell.exe -NoLogo
-    Set-Location $downloadDir
+    # Refresh PowerShell so that Git works for the Scoop Section
+    Write-Host "Refreshing the environment so that Git is available for the Scoop Section."
+    $refreshEnv
 
 
     ########## SCOOP ##########
@@ -182,13 +183,13 @@ if ($userInput.ToLower() -eq "y") {
     ##### CLEANUP #####
 
     # Delete desktop icons
-    Get-ChildItem $desktopDir | Remove-Item -Force -Recurse
+    Get-ChildItem $desktopDir -Exclude $scriptDir | Remove-Item -Force -Recurse
 
     # Delete downloads
     Get-ChildItem $downloadDir | Remove-Item -Force -Recurse
 
-    # Exit secondary PowerShell Session
-    Exit
+    # Clear the recycle bin
+    Clear-RecycleBin -Force
 
 }
 

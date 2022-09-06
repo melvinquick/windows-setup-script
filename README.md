@@ -6,7 +6,7 @@ This is a script for setting up Windows to how I like it on a fresh install.
 
 ## To-Do List
 
-- Caskaydia Cove Font
+- Caskaydia Cove Font :construction:
 
   - Get all Windows Compatible Sets of Caskaydia Cove Nerd Font installed :white_check_mark:
   - Set default font in PowerShell to Caskaydia Cove Nerd Font :x:
