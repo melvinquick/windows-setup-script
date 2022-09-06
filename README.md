@@ -11,7 +11,7 @@ This is a script for setting up Windows to how I like it on a fresh install.
 - Open PowerShell as a normal user and run Expand-Archive Downloads\WindowsSetupScript-main.zip
 - Set-Location -Path "WindowsSetupScript-main\WindowsSetupScript-main"
 - .\WindowsSetupScript.ps1
-  - If you get an error, run this command: Unblock-File -Path .\WindowsSetupScript.ps1
+  - If you get an error, run this command: Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process
   - Then run the script again using .\WindowsSetupScript.ps1
 
 ## To-Do List

@@ -1,7 +1,7 @@
 # Variables
 $caskaydiaDir = ""
 $caskaydiaUrl = "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/CascadiaCode.zip"
-$caskaydiaZipDir = "$downloadDir\CascadiaCode.zip"
+$caskaydiaZipDir = "CascadiaCode.zip"
 $configDir = "$downloadDir\ConfigFiles"
 $configUrl = "https://github.com/cquick00/ConfigFiles.git"
 $desktopDir = "~\Desktop"
@@ -63,6 +63,13 @@ if ($userInput.ToLower() -eq "y") {
         # Install
         Import-Module -Name Appx -UseWindowsPowerShell
         Add-AppxPackage -Path $wingetInstaller
+
+        ########## REFRESH ENVIRONMENT ##########
+        Write-Host "`n########## REFRESH ENVIRONMENT ##########" -ForegroundColor Green
+
+        # Refresh PowerShell so that Git works for the Scoop Section
+        Write-Host "Refreshing the environment so that Git is available for the Scoop Section."
+        $refreshEnv
 
     }
 
@@ -194,7 +201,7 @@ if ($userInput.ToLower() -eq "y") {
     ##### NOTES #####
 
     # Tell User to change their default font in PowerShell to Caskaydia Cove NF
-    Write-Host "As it is currently not possible to set this wiht a PowerShell Command, please change your default font in PowerShell to Caskaydia Cove NF."
+    Write-Host "As it is currently not possible to set this with a PowerShell Command, please change your default font in PowerShell to Caskaydia Cove NF."
 
 }
 
