@@ -4,6 +4,16 @@
 
 This is a script for setting up Windows to how I like it on a fresh install.
 
+## Instructions / Notes
+
+- Download it as a zip file and save it wherever you want (your downloads folder should be fine)
+- Set-Location -Path "~\Downloads"
+- Open PowerShell as a normal user and run Expand-Archive Downloads\WindowsSetupScript-main.zip
+- Set-Location -Path "WindowsSetupScript-main\WindowsSetupScript-main"
+- .\WindowsSetupScript.ps1
+  - If you get an error, run this command: Unblock-File -Path .\WindowsSetupScript.ps1
+  - Then run the script again using .\WindowsSetupScript.ps1
+
 ## To-Do List
 
 - Caskaydia Cove Font :construction:
