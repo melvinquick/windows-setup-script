@@ -191,6 +191,11 @@ if ($userInput.ToLower() -eq "y") {
     # Clear the recycle bin
     Clear-RecycleBin -Force
 
+    ##### NOTES #####
+
+    # Tell User to change their default font in PowerShell to Caskaydia Cove NF
+    Write-Host "As it is currently not possible to set this wiht a PowerShell Command, please change your default font in PowerShell to Caskaydia Cove NF."
+
 }
 
 elseif ($userInput.ToLower() -eq "n") {
