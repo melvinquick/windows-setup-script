@@ -59,7 +59,7 @@ if ($userInput.ToLower() -eq "y") {
         # Install
         Set-ExecutionPolicy Bypass -Scope Process -Force
         [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
-        Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+        Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1')) | Out-Null
     }
 
 
@@ -81,11 +81,8 @@ if ($userInput.ToLower() -eq "y") {
         Invoke-WebRequest -Uri $wingetUrl -OutFile $wingetInstaller 
 
         # Install
-        Import-Module -Name Appx -UseWindowsPowerShell
+        Import-Module -Name Appx
         Add-AppxPackage -Path $wingetInstaller
-
-        ########## REFRESH ENVIRONMENT ##########
-        Write-Host "`n########## REFRESH ENVIRONMENT ##########" -ForegroundColor Green
 
         # Refresh PowerShell so that Winget works for the Install Section
         Write-Host "Refreshing the environment so that Winget is available for the Install Section."
@@ -123,14 +120,6 @@ if ($userInput.ToLower() -eq "y") {
     winget install -e --id Microsoft.VisualStudioCode
 
 
-    ########## REFRESH ENVIRONMENT ##########
-    Write-Host "`n########## REFRESH ENVIRONMENT ##########" -ForegroundColor Green
-
-    # Refresh PowerShell so that Git works for the Scoop Section
-    Write-Host "Refreshing the environment so that Git is available for the Scoop Section."
-    refreshenv
-
-
     ########## SCOOP ##########
     Write-Host "`n########## SCOOP ##########" -ForegroundColor Green
 
@@ -150,13 +139,10 @@ if ($userInput.ToLower() -eq "y") {
         Invoke-RestMethod get.scoop.sh | Invoke-Expression -RunAsAdmin
     }
 
-    ########## REFRESH ENVIRONMENT ##########
-    Write-Host "`n########## REFRESH ENVIRONMENT ##########" -ForegroundColor Green
-
     # Refresh PowerShell so that Git works for the Scoop Section
     Write-Host "Refreshing the environment so that Git is available for the Scoop Section."
     refreshenv
-    
+
     # Add buckets
     Write-Host "Scoop is now installed."
     Write-Host "Now adding buckets and installing programs via Scoop."
