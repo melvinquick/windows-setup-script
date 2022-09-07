@@ -17,7 +17,6 @@ $powershellConfig = "$configDir\PowerShell\powershell.config.json"
 $powershellConfigDir = "~\Documents\PowerShell"
 $powershellConfigDirExists = $false
 $powershellProfileConfig = "$configDir\PowerShell\Microsoft.PowerShell_profile.ps1"
-$refreshEnv = $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
 $scriptDir = "$downloadDir\WindowsSetupScript-main\WindowsSetupScript-main"
 $starshipConfig = "$configDir\Starship\starship.toml"
 $starshipConfigDir = "~\.config"
@@ -26,6 +25,7 @@ $wingetConfig = "$configDir\Winget\settings.json"
 $wingetConfigDir = "$localAppDataDir\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState"
 $wingetInstaller = "Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle"
 $wingetUrl = "https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle"
+$chocolateyInstaller = Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 
 
 ########## INTRODUCTION ##########
@@ -44,11 +44,29 @@ if ($userInput.ToLower() -eq "y") {
     Set-Location $downloadDir
 
 
+    ########## CHOCOLATEY ##########
+
+    # Check if Chocolatey is installed already
+    Write-Host "Checking to see if Chocolatey is installed."
+
+    if (choco -v) {
+        $isInstalled = $true
+    }
+
+    if ($isInstalled -eq $false) {
+        Write-Host "Chocolatey was not installed. Downloading and installing now."
+
+        # Install
+        $chocolateyInstaller
+    }
+
+
     ########## WINGET ##########
     Write-Host "`n########## WINGET ##########" -ForegroundColor Green
 
     # Check if Winget is installed already
     Write-Host "Checking to see if Winget is installed."
+    $isInstalled = $false
 
     if (winget -v) {
         $isInstalled = $true
@@ -69,8 +87,7 @@ if ($userInput.ToLower() -eq "y") {
 
         # Refresh PowerShell so that Winget works for the Install Section
         Write-Host "Refreshing the environment so that Winget is available for the Install Section."
-        $refreshEnv
-
+        refreshnv
     }
 
     # Install programs
@@ -109,7 +126,7 @@ if ($userInput.ToLower() -eq "y") {
 
     # Refresh PowerShell so that Git works for the Scoop Section
     Write-Host "Refreshing the environment so that Git is available for the Scoop Section."
-    $refreshEnv
+    refreshenv
 
 
     ########## SCOOP ##########
@@ -125,10 +142,10 @@ if ($userInput.ToLower() -eq "y") {
 
     if ($isInstalled -eq $false) {
         Write-Host "Scoop was not installed. Downloading and installing now."
+        
         # Install
         Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
         Invoke-RestMethod get.scoop.sh | Invoke-Expression
-
     }
 
     # Add buckets

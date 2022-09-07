@@ -21,6 +21,9 @@ This is a script for setting up Windows to how I like it on a fresh install.
   - Get all Windows Compatible Sets of Caskaydia Cove Nerd Font installed :white_check_mark:
   - Set default font in PowerShell to Caskaydia Cove Nerd Font :x:
 
+- Chocolatey :white_check_mark:
+  - Add section for installing Chocolatey
+
 - PowerShell :construction:
 
   - Add check for PowerShell Config Directory Path and create it if it doesn't exist :white_check_mark:
