@@ -6,10 +6,6 @@ This is a script for setting up Windows to how I like it on a fresh install.
 
 ## Instructions
 
-- To install Winget you'll need to turn on .NET Framework 3.5, which includes .NET 2.0 and .NET 3.0
-  - You can do this by typing Turn Windows features on or off into your search bar and launching the application
-  - Then check the first box and hit ok
-  - Select Let Windows Update download the files for you and wait for it to finish
 - Download the script as a zip file and save it wherever you want (your downloads folder should be fine)
 - Open PowerShell as an admin user and run these commands in this order:
   - Set-Location -Path "~\Downloads"
