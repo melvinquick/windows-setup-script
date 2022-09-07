@@ -89,7 +89,7 @@ if ($userInput.ToLower() -eq "y") {
 
         # Refresh PowerShell so that Winget works for the Install Section
         Write-Host "Refreshing the environment so that Winget is available for the Install Section."
-        refreshnv
+        refreshenv
     }
 
     # Install programs
@@ -150,6 +150,13 @@ if ($userInput.ToLower() -eq "y") {
         Invoke-RestMethod get.scoop.sh | Invoke-Expression -RunAsAdmin
     }
 
+    ########## REFRESH ENVIRONMENT ##########
+    Write-Host "`n########## REFRESH ENVIRONMENT ##########" -ForegroundColor Green
+
+    # Refresh PowerShell so that Git works for the Scoop Section
+    Write-Host "Refreshing the environment so that Git is available for the Scoop Section."
+    refreshenv
+    
     # Add buckets
     Write-Host "Scoop is now installed."
     Write-Host "Now adding buckets and installing programs via Scoop."
@@ -207,6 +214,7 @@ if ($userInput.ToLower() -eq "y") {
 
 
     ##### CLEANUP #####
+    Write-Host "`n########## CLEANUP ##########" -ForegroundColor Green
 
     # Delete desktop icons
     Get-ChildItem $desktopDir -Exclude $scriptDir | Remove-Item -Force -Recurse
