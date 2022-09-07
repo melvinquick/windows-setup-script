@@ -4,15 +4,17 @@
 
 This is a script for setting up Windows to how I like it on a fresh install.
 
-## Instructions / Notes
+## Instructions
 
 - Download it as a zip file and save it wherever you want (your downloads folder should be fine)
-- Set-Location -Path "~\Downloads"
-- Open PowerShell as a normal user and run Expand-Archive Downloads\WindowsSetupScript-main.zip
-- Set-Location -Path "WindowsSetupScript-main\WindowsSetupScript-main"
-- .\WindowsSetupScript.ps1
-  - If you get an error, run this command: Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process
-  - Then run the script again using .\WindowsSetupScript.ps1
+- Open PowerShell as an admin user and run these commands in this order:
+  - Set-Location -Path "~\Downloads"
+  - Expand-Archive WindowsSetupScript-main.zip
+  - Set-Location -Path "WindowsSetupScript-main\WindowsSetupScript-main"
+  - .\WindowsSetupScript.ps1
+    - If you get an error, run this command:
+      - Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process
+      - Then run the script again using .\WindowsSetupScript.ps1
 
 ## To-Do List
 

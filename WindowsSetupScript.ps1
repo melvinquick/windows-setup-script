@@ -25,7 +25,6 @@ $wingetConfig = "$configDir\Winget\settings.json"
 $wingetConfigDir = "$localAppDataDir\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState"
 $wingetInstaller = "Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle"
 $wingetUrl = "https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle"
-$chocolateyInstaller = Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 
 
 ########## INTRODUCTION ##########
@@ -45,6 +44,7 @@ if ($userInput.ToLower() -eq "y") {
 
 
     ########## CHOCOLATEY ##########
+    Write-Host "`n########## CHOCOLATEY ##########" -ForegroundColor Green
 
     # Check if Chocolatey is installed already
     Write-Host "Checking to see if Chocolatey is installed."
@@ -57,7 +57,9 @@ if ($userInput.ToLower() -eq "y") {
         Write-Host "Chocolatey was not installed. Downloading and installing now."
 
         # Install
-        $chocolateyInstaller
+        Set-ExecutionPolicy Bypass -Scope Process -Force
+        [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
+        Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
     }
 
 
@@ -142,10 +144,10 @@ if ($userInput.ToLower() -eq "y") {
 
     if ($isInstalled -eq $false) {
         Write-Host "Scoop was not installed. Downloading and installing now."
-        
+
         # Install
         Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
-        Invoke-RestMethod get.scoop.sh | Invoke-Expression
+        Invoke-RestMethod get.scoop.sh | Invoke-Expression -RunAsAdmin
     }
 
     # Add buckets
