@@ -37,5 +37,5 @@ This is a script for setting up Windows to how I like it on a fresh install.
 
 - Information For User :construction:
 
-  - Add Write-Host commands for each new section so that the user knows where they're at in the script
-  - Suppress output of useless information (i.e. winget saying that it's not recognized juct because I ran winget -v to check to see if it was installed or not)
+  - Add Write-Host commands for each new section so that the user knows where they're at in the script :white_check_mark:
+  - Suppress output of useless information (i.e. winget saying that it's not recognized juct because I ran winget -v to check to see if it was installed or not) :x:
