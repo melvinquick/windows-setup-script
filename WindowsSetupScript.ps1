@@ -163,7 +163,7 @@ if ($userInput.ToLower() -eq "y") {
         Write-Host "Scoop was not installed. Downloading and installing now."
 
         # Install
-        Invoke-RestMethod get.scoop.sh | Invoke-Expression -RunAsAdmin
+        Invoke-Expression "& {$(Invoke-RestMethod get.scoop.sh)} -RunAsAdmin"
         Write-Host "Scoop is now installed."
     }
 
