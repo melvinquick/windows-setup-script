@@ -81,8 +81,7 @@ if ($userInput.ToLower() -eq "y") {
         Invoke-WebRequest -Uri $wingetUrl -OutFile $wingetInstaller 
 
         # Install
-        Import-Module -Name Appx
-        Add-AppxPackage -Path $wingetInstaller
+        Add-AppxProvisionedPackage -Online -PackagePath $wingetInstaller
 
         # Refresh PowerShell so that Winget works for the Install Section
         Write-Host "Refreshing the environment so that Winget is available for the Install Section."
