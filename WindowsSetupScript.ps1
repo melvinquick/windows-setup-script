@@ -55,7 +55,6 @@ if ($userInput.ToLower() -eq "y") {
         Write-Host "Chocolatey was not installed. Downloading and installing now."
 
         # Install
-        Set-ExecutionPolicy Bypass -Scope Process -Force
         [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
         Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1')) | Out-Null
     }
@@ -115,11 +114,11 @@ if ($userInput.ToLower() -eq "y") {
             Wait-Process -Id $nid
             Write-Host "Winget Installed"
         }
+        Write-Host "Winget is now installed."
         refreshenv
     }
 
     # Install programs
-    Write-Host "Winget is now installed."
     Write-Host "Now installing programs via Winget."
     winget install -e --id 7zip.7zip
     winget install -e --id Amazon.Games
@@ -164,8 +163,8 @@ if ($userInput.ToLower() -eq "y") {
         Write-Host "Scoop was not installed. Downloading and installing now."
 
         # Install
-        Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
         Invoke-RestMethod get.scoop.sh | Invoke-Expression -RunAsAdmin
+        Write-Host "Scoop is now installed."
     }
 
     # Refresh PowerShell so that Git works for adding buckets to Scoop
@@ -173,7 +172,6 @@ if ($userInput.ToLower() -eq "y") {
     refreshenv
 
     # Add buckets
-    Write-Host "Scoop is now installed."
     Write-Host "Now adding buckets and installing programs via Scoop."
     scoop bucket add main
     scoop bucket add extras

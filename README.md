@@ -11,10 +11,8 @@ This is a script for setting up Windows to how I like it on a fresh install.
   - Set-Location -Path "~\Downloads"
   - Expand-Archive WindowsSetupScript-main.zip
   - Set-Location -Path "WindowsSetupScript-main\WindowsSetupScript-main"
+  - Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope Process
   - .\WindowsSetupScript.ps1
-    - If you get an error, run this command:
-      - Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process
-      - Then run the script again using .\WindowsSetupScript.ps1
 
 ## To-Do List
 
