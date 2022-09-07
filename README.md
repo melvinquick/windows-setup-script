@@ -24,7 +24,6 @@ This is a script for setting up Windows to how I like it on a fresh install.
 - PowerShell :white_check_mark:
 
   - Add check for PowerShell Config Directory Path and create it if it doesn't exist
-  - Add call to refresh PowerShell instance after installing git so that the Scoop Buckets can be added properly
   - Add exit command at end to get out of nested PowerShell
 
 - Scoop :white_check_mark:
