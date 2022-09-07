@@ -139,7 +139,7 @@ if ($userInput.ToLower() -eq "y") {
         Invoke-RestMethod get.scoop.sh | Invoke-Expression -RunAsAdmin
     }
 
-    # Refresh PowerShell so that Git works for the Scoop Section
+    # Refresh PowerShell so that Git works for adding buckets to Scoop
     Write-Host "Refreshing the environment so that Git is available for the Scoop Section."
     refreshenv
 
