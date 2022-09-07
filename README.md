@@ -21,9 +21,10 @@ This is a script for setting up Windows to how I like it on a fresh install.
   - Get all Windows Compatible Sets of Caskaydia Cove Nerd Font installed :white_check_mark:
   - Set default font in PowerShell to Caskaydia Cove Nerd Font :x:
 
-- PowerShell :white_check_mark:
+- PowerShell :construction:
 
   - Add check for PowerShell Config Directory Path and create it if it doesn't exist
+  - Add a way to refresh the environment when needed for Winget and Git pickup :x:
   - Add exit command at end to get out of nested PowerShell
 
 - Scoop :white_check_mark:
