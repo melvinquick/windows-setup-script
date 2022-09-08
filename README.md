@@ -25,11 +25,11 @@ This is a script for setting up Windows to how I like it on a fresh install.
 
   - Add section for installing Chocolatey
 
-- PowerShell :construction:
+- PowerShell :white_check_mark:
 
-  - Add check for PowerShell Config Directory Path and create it if it doesn't exist :white_check_mark:
-  - Add a way to refresh the environment when needed for Winget and Git pickup :x:
-  - Add exit command at end to get out of nested PowerShell :white_check_mark:
+  - Add check for PowerShell Config Directory Path and create it if it doesn't exist
+  - Add a way to refresh the environment when needed for Winget and Git pickup
+  - Add exit command at end to get out of nested PowerShell
 
 - Scoop :white_check_mark:
 
