@@ -15,7 +15,7 @@ $fontsDir = "C:\Windows\Fonts"
 $localAppDataDir = "~\AppData\Local"
 
 # Directories
-$caskaydiaDir = "$downloadDir\CascadiaCode"
+$caskaydiaDir = ""
 $caskaydiaZipDir = "$downloadDir\CascadiaCode.zip"
 $configDir = "$downloadDir\ConfigFiles"
 $powershellConfigDir = "$documentDir\PowerShell"
@@ -257,6 +257,7 @@ if ($userInput.ToLower() -eq "y") {
     Invoke-WebRequest -Uri $caskaydiaUrl -OutFile $caskaydiaZipDir
 
     # Extract Caskaydia Cove NF
+    $caskaydiaDir = "$downloadDir\CascadiaCode"
     Expand-Archive -Path $caskaydiaZipDir -DestinationPath $caskaydiaDir
 
     # Install all Windows Compatible versions in the downloaded folder
