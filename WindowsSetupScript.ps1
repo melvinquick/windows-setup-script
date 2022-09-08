@@ -67,7 +67,7 @@ if ($userInput.ToLower() -eq "y") {
     Write-Host "=============================================" -ForegroundColor Green
 
     # Check if Chocolatey is installed already
-    Write-Host "Checking to see if Chocolatey is installed."
+    Write-Host "`nChecking to see if Chocolatey is installed."
 
     if (choco -v) {
         $isInstalled = $true
@@ -91,7 +91,7 @@ if ($userInput.ToLower() -eq "y") {
     Write-Host "=============================================" -ForegroundColor Green
 
     # Check if Winget is installed already
-    Write-Host "Checking to see if Winget is installed."
+    Write-Host "`nChecking to see if Winget is installed."
     $isInstalled = $false
 
     if (winget -v) {
@@ -184,7 +184,7 @@ if ($userInput.ToLower() -eq "y") {
     Write-Host "=============================================" -ForegroundColor Green
 
     # Check if Scoop is installed already
-    Write-Host "Checking to see if Scoop is installed."
+    Write-Host "`nChecking to see if Scoop is installed."
     $isInstalled = $false
 
     if (scoop -v) {
@@ -224,7 +224,7 @@ if ($userInput.ToLower() -eq "y") {
     Write-Host "=============================================" -ForegroundColor Green
 
     # Git clone repo
-    Write-Host "Downloading the config files from GitHub."
+    Write-Host "`nDownloading the config files from GitHub."
     git clone $configUrl
 
     # Check for PowerShell Config Directory
@@ -253,7 +253,7 @@ if ($userInput.ToLower() -eq "y") {
     Write-Host "=============================================" -ForegroundColor Green
 
     # Download Caskaydia Cove NF
-    Write-Host "Downloading, extracting, and installing the Caskaydia Cove Font from Nerd Fonts."
+    Write-Host "`nDownloading, extracting, and installing the Caskaydia Cove Font from Nerd Fonts."
     Invoke-WebRequest -Uri $caskaydiaUrl -OutFile $caskaydiaZipDir
 
     # Extract Caskaydia Cove NF
@@ -279,12 +279,15 @@ if ($userInput.ToLower() -eq "y") {
     Write-Host "=============================================" -ForegroundColor Green
 
     # Delete desktop icons
+    Write-Host "`nDeleting Desktop Icons that were created from program installs."
     Get-ChildItem $desktopDir -Exclude $scriptDir | Remove-Item -Force -Recurse
 
     # Delete downloads
+    Write-Host "Deleting downloads resulting from this script."
     Get-ChildItem $downloadDir | Remove-Item -Force -Recurse
 
     # Clear the recycle bin
+    Write-Host "Emptying the Recycle Bin."
     Clear-RecycleBin -Force
 
     # =============================================
@@ -296,7 +299,7 @@ if ($userInput.ToLower() -eq "y") {
     Write-Host "=============================================" -ForegroundColor Green
 
     # Tell User to change their default font in PowerShell to Caskaydia Cove NF
-    Write-Host "As it is currently not possible to set this with a PowerShell Command, please change your default font in PowerShell to Caskaydia Cove NF."
+    Write-Host "`nAs it is currently not possible to set this with a PowerShell Command, please change your default font in PowerShell to Caskaydia Cove NF."
 
 }
 
