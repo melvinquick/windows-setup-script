@@ -14,6 +14,12 @@ $downloadDir = "~\Downloads"
 $fontsDir = "C:\Windows\Fonts"
 $localAppDataDir = "~\AppData\Local"
 
+# Miscellaneous
+$fontExists = $false
+$fonts = ""
+$isInstalled = $false
+$userInput = ""
+
 
 # =============================================
 # INTRODUCTION
@@ -216,13 +222,12 @@ if ($userInput.ToLower() -eq "y") {
 
     # Check for PowerShell Config Directory
     Write-Host "Checking for the PowerShell Config Directory and creating it if it doesn't exist."
-    $powershellConfigDirExists = Test-Path -Path $powershellConfigDest
+    $powershellConfigDestExists = Test-Path -Path $powershellConfigDest
 
-    if ($powershellConfigDirExists -eq $false) {
-        New-Item -Path $powershellConfigDir -ItemType Directory
+    if ($powershellConfigDestExists -eq $false) {
+        New-Item -Path $powershellConfigDest -ItemType Directory
     }
     
-
     # Configs
     $powershellJsonConfig = "$configDir\PowerShell\powershell.config.json"
     $powershellProfileConfig = "$configDir\PowerShell\Microsoft.PowerShell_profile.ps1"
