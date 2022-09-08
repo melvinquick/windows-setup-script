@@ -25,7 +25,9 @@ $wingetConfig = "$configDir\Winget\settings.json"
 $wingetConfigDir = "$localAppDataDir\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState"
 
 
-########## INTRODUCTION ##########
+# =============================================
+# INTRODUCTION
+# =============================================
 
 # Main
 Write-Host "`nDISCLAIMER: NEVER RUN SCRIPTS YOU FIND ON THE INTERNET BEFORE FIRST READING THROUGH THEM!`n" -ForegroundColor Red
@@ -41,8 +43,13 @@ if ($userInput.ToLower() -eq "y") {
     Set-Location $downloadDir
 
 
-    ########## CHOCOLATEY ##########
-    Write-Host "`n########## CHOCOLATEY ##########" -ForegroundColor Green
+    # =============================================
+    # CHOCOLATEY
+    # =============================================
+
+    Write-Host "`n# =============================================" -ForegroundColor Green
+    Write-Host "`n# CHOCOLATEY" -ForegroundColor Green
+    Write-Host "`n# =============================================" -ForegroundColor Green
 
     # Check if Chocolatey is installed already
     Write-Host "Checking to see if Chocolatey is installed."
@@ -60,8 +67,13 @@ if ($userInput.ToLower() -eq "y") {
     }
 
 
-    ########## WINGET ##########
-    Write-Host "`n########## WINGET ##########" -ForegroundColor Green
+    # =============================================
+    # WINGET
+    # =============================================
+
+    Write-Host "`n# =============================================" -ForegroundColor Green
+    Write-Host "`n# WINGET" -ForegroundColor Green
+    Write-Host "`n# =============================================" -ForegroundColor Green
 
     # Check if Winget is installed already
     Write-Host "Checking to see if Winget is installed."
@@ -148,8 +160,13 @@ if ($userInput.ToLower() -eq "y") {
     winget install -e --id Microsoft.VisualStudioCode
 
 
-    ########## SCOOP ##########
-    Write-Host "`n########## SCOOP ##########" -ForegroundColor Green
+    # =============================================
+    # SCOOP
+    # =============================================
+
+    Write-Host "`n# =============================================" -ForegroundColor Green
+    Write-Host "`n# SCOOP" -ForegroundColor Green
+    Write-Host "`n# =============================================" -ForegroundColor Green
 
     # Check if Scoop is installed already
     Write-Host "Checking to see if Scoop is installed."
@@ -173,7 +190,7 @@ if ($userInput.ToLower() -eq "y") {
 
     # Install 7zip and Git for bucket adding
     scoop install 7zip git
-    
+
     # Add buckets
     Write-Host "Now adding buckets and installing programs via Scoop."
     scoop bucket add main
@@ -207,8 +224,13 @@ if ($userInput.ToLower() -eq "y") {
     Copy-Item $wingetConfig -Destination $wingetConfigDir
 
 
-    ########## FONT ##########
-    Write-Host "`n########## FONT ##########" -ForegroundColor Green
+    # =============================================
+    # FONT
+    # =============================================
+
+    Write-Host "`n# =============================================" -ForegroundColor Green
+    Write-Host "`n# FONT" -ForegroundColor Green
+    Write-Host "`n# =============================================" -ForegroundColor Green
 
     # Download Caskaydia Cove NF
     Write-Host "Downloading, extracting, and installing the Caskaydia Cove Font from Nerd Fonts."
@@ -229,8 +251,13 @@ if ($userInput.ToLower() -eq "y") {
     }
 
 
-    ##### CLEANUP #####
-    Write-Host "`n########## CLEANUP ##########" -ForegroundColor Green
+    # =============================================
+    # CLEANUP
+    # =============================================
+
+    Write-Host "`n# =============================================" -ForegroundColor Green
+    Write-Host "`n# CLEANUP" -ForegroundColor Green
+    Write-Host "`n# =============================================" -ForegroundColor Green
 
     # Delete desktop icons
     Get-ChildItem $desktopDir -Exclude $scriptDir | Remove-Item -Force -Recurse
@@ -241,7 +268,13 @@ if ($userInput.ToLower() -eq "y") {
     # Clear the recycle bin
     Clear-RecycleBin -Force
 
-    ##### NOTES #####
+    # =============================================
+    # NOTES
+    # =============================================
+
+    Write-Host "`n# =============================================" -ForegroundColor Green
+    Write-Host "`n# NOTES" -ForegroundColor Green
+    Write-Host "`n# =============================================" -ForegroundColor Green
 
     # Tell User to change their default font in PowerShell to Caskaydia Cove NF
     Write-Host "As it is currently not possible to set this with a PowerShell Command, please change your default font in PowerShell to Caskaydia Cove NF."
