@@ -1,33 +1,48 @@
-# Variables
-$caskaydiaDir = ""
+# =============================================
+# VARIABLES
+# =============================================
+
+# URLs
 $caskaydiaUrl = "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/CascadiaCode.zip"
-$caskaydiaZipDir = "CascadiaCode.zip"
-$configDir = "$downloadDir\ConfigFiles"
 $configUrl = "https://github.com/cquick00/ConfigFiles.git"
+
+# System Directories
+$configDir = "~\.config"
 $desktopDir = "~\Desktop"
 $documentDir = "~\Documents"
 $downloadDir = "~\Downloads"
-$fontExists = $false
-$fontName = ""
-$fonts = Get-ChildItem $caskaydiaDir | Where-Object -Property Name -Like "*Windows Compatible*"
-$fontsDir = (New-Object -ComObject Shell.Application).Namespace(0x14)
-$isInstalled = $false
+$fontsDir = "C:\Windows\Fonts"
 $localAppDataDir = "~\AppData\Local"
-$powershellConfig = "$configDir\PowerShell\powershell.config.json"
-$powershellConfigDir = "~\Documents\PowerShell"
-$powershellConfigDirExists = $false
-$powershellProfileConfig = "$configDir\PowerShell\Microsoft.PowerShell_profile.ps1"
+
+# Directories
+$caskaydiaDir = "$downloadDir\CascadiaCode"
+$caskaydiaZipDir = "$downloadDir\CascadiaCode.zip"
+$configDir = "$downloadDir\ConfigFiles"
+$powershellConfigDir = "$documentDir\PowerShell"
 $scriptDir = "$downloadDir\WindowsSetupScript-main\WindowsSetupScript-main"
-$starshipConfig = "$configDir\Starship\starship.toml"
-$starshipConfigDir = "~\.config"
-$userInput = ""
-$wingetConfig = "$configDir\Winget\settings.json"
 $wingetConfigDir = "$localAppDataDir\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState"
+
+# Configs
+$powershellJsonConfig = "$configDir\powershell.config.json"
+$powershellProfileConfig = "$configDir\Microsoft.PowerShell_profile.ps1"
+$starshipConfig = "$configDir\Starship\starship.toml"
+$wingetConfig = "$configDir\Winget\settings.json"
+
+# Miscellaneous
+$fontExists = $false
+$fonts = Get-ChildItem $caskaydiaDir | Where-Object -Property Name -Like "*Windows Compatible*"
+$isInstalled = $false
+$powershellConfigDirExists = $false
+$userInput = ""
 
 
 # =============================================
 # INTRODUCTION
 # =============================================
+
+Write-Host "`n# =============================================" -ForegroundColor Green
+Write-Host "`n# INTRODUCTION" -ForegroundColor Green
+Write-Host "`n# =============================================" -ForegroundColor Green
 
 # Main
 Write-Host "`nDISCLAIMER: NEVER RUN SCRIPTS YOU FIND ON THE INTERNET BEFORE FIRST READING THROUGH THEM!`n" -ForegroundColor Red
@@ -200,8 +215,13 @@ if ($userInput.ToLower() -eq "y") {
     scoop install ghostwriter hugo nano neofetch
 
 
-    ########## CONFIGS ##########
-    Write-Host "`n########## CONFIGS ##########" -ForegroundColor Green
+    # =============================================
+    # CONFIGS
+    # =============================================
+
+    Write-Host "`n# =============================================" -ForegroundColor Green
+    Write-Host "`n# CONFIGS" -ForegroundColor Green
+    Write-Host "`n# =============================================" -ForegroundColor Green
 
     # Git clone repo
     Write-Host "Downloading the config files from GitHub."
@@ -212,15 +232,15 @@ if ($userInput.ToLower() -eq "y") {
     $powershellConfigDirExists = Test-Path -Path $powershellConfigDir
 
     if ($powershellConfigDirExists -eq $false) {
-        New-Item -Name PowerShell -Path $documentDir -ItemType Directory
+        New-Item -Path $powershellConfigDir -ItemType Directory
     }
     
 
     # Move files to correct location
     Write-Host "Moving config files to their correct locations."
     Copy-Item $powershellProfileConfig -Destination $powershellConfigDir
-    Copy-Item $powershellConfig -Destination $powershellConfigDir
-    Copy-Item $starshipConfig -Destination $starshipConfigDir
+    Copy-Item $powershellJsonConfig -Destination $powershellConfigDir
+    Copy-Item $starshipConfig -Destination $configDir
     Copy-Item $wingetConfig -Destination $wingetConfigDir
 
 
@@ -235,18 +255,16 @@ if ($userInput.ToLower() -eq "y") {
     # Download Caskaydia Cove NF
     Write-Host "Downloading, extracting, and installing the Caskaydia Cove Font from Nerd Fonts."
     Invoke-WebRequest -Uri $caskaydiaUrl -OutFile $caskaydiaZipDir
-    $caskaydiaDir = "$downloadDir\CascadiaCode"
 
     # Extract Caskaydia Cove NF
     Expand-Archive -Path $caskaydiaZipDir -DestinationPath $caskaydiaDir
 
     # Install all Windows Compatible versions in the downloaded folder
     foreach ($font in $fonts) {
-        $fontName = $font.Name
-        $fontExists = Test-Path -Path $fontsDir\$fontName
+        $fontExists = Test-Path -Path $fontsDir\$font.Name
 
         if ($fontExists -eq $false) {
-            Get-ChildItem $font | ForEach-Object { $fontsDir.CopyHere($_.FullName) }
+            Copy-Item $font -Destination $fontsDir
         }
     }
 
