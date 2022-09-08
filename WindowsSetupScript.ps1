@@ -40,9 +40,9 @@ $userInput = ""
 # INTRODUCTION
 # =============================================
 
-Write-Host "`n# =============================================" -ForegroundColor Green
-Write-Host "`n# INTRODUCTION" -ForegroundColor Green
-Write-Host "`n# =============================================" -ForegroundColor Green
+Write-Host "`n=============================================" -ForegroundColor Green
+Write-Host "INTRODUCTION" -ForegroundColor Green
+Write-Host "=============================================" -ForegroundColor Green
 
 # Main
 Write-Host "`nDISCLAIMER: NEVER RUN SCRIPTS YOU FIND ON THE INTERNET BEFORE FIRST READING THROUGH THEM!`n" -ForegroundColor Red
@@ -62,9 +62,9 @@ if ($userInput.ToLower() -eq "y") {
     # CHOCOLATEY
     # =============================================
 
-    Write-Host "`n# =============================================" -ForegroundColor Green
-    Write-Host "`n# CHOCOLATEY" -ForegroundColor Green
-    Write-Host "`n# =============================================" -ForegroundColor Green
+    Write-Host "`n=============================================" -ForegroundColor Green
+    Write-Host "CHOCOLATEY" -ForegroundColor Green
+    Write-Host "=============================================" -ForegroundColor Green
 
     # Check if Chocolatey is installed already
     Write-Host "Checking to see if Chocolatey is installed."
@@ -86,9 +86,9 @@ if ($userInput.ToLower() -eq "y") {
     # WINGET
     # =============================================
 
-    Write-Host "`n# =============================================" -ForegroundColor Green
-    Write-Host "`n# WINGET" -ForegroundColor Green
-    Write-Host "`n# =============================================" -ForegroundColor Green
+    Write-Host "`n=============================================" -ForegroundColor Green
+    Write-Host "WINGET" -ForegroundColor Green
+    Write-Host "=============================================" -ForegroundColor Green
 
     # Check if Winget is installed already
     Write-Host "Checking to see if Winget is installed."
@@ -179,9 +179,9 @@ if ($userInput.ToLower() -eq "y") {
     # SCOOP
     # =============================================
 
-    Write-Host "`n# =============================================" -ForegroundColor Green
-    Write-Host "`n# SCOOP" -ForegroundColor Green
-    Write-Host "`n# =============================================" -ForegroundColor Green
+    Write-Host "`n=============================================" -ForegroundColor Green
+    Write-Host "SCOOP" -ForegroundColor Green
+    Write-Host "=============================================" -ForegroundColor Green
 
     # Check if Scoop is installed already
     Write-Host "Checking to see if Scoop is installed."
@@ -219,9 +219,9 @@ if ($userInput.ToLower() -eq "y") {
     # CONFIGS
     # =============================================
 
-    Write-Host "`n# =============================================" -ForegroundColor Green
-    Write-Host "`n# CONFIGS" -ForegroundColor Green
-    Write-Host "`n# =============================================" -ForegroundColor Green
+    Write-Host "`n=============================================" -ForegroundColor Green
+    Write-Host "CONFIGS" -ForegroundColor Green
+    Write-Host "=============================================" -ForegroundColor Green
 
     # Git clone repo
     Write-Host "Downloading the config files from GitHub."
@@ -248,9 +248,9 @@ if ($userInput.ToLower() -eq "y") {
     # FONT
     # =============================================
 
-    Write-Host "`n# =============================================" -ForegroundColor Green
-    Write-Host "`n# FONT" -ForegroundColor Green
-    Write-Host "`n# =============================================" -ForegroundColor Green
+    Write-Host "`n=============================================" -ForegroundColor Green
+    Write-Host "FONT" -ForegroundColor Green
+    Write-Host "=============================================" -ForegroundColor Green
 
     # Download Caskaydia Cove NF
     Write-Host "Downloading, extracting, and installing the Caskaydia Cove Font from Nerd Fonts."
@@ -274,9 +274,9 @@ if ($userInput.ToLower() -eq "y") {
     # CLEANUP
     # =============================================
 
-    Write-Host "`n# =============================================" -ForegroundColor Green
-    Write-Host "`n# CLEANUP" -ForegroundColor Green
-    Write-Host "`n# =============================================" -ForegroundColor Green
+    Write-Host "`n=============================================" -ForegroundColor Green
+    Write-Host "CLEANUP" -ForegroundColor Green
+    Write-Host "=============================================" -ForegroundColor Green
 
     # Delete desktop icons
     Get-ChildItem $desktopDir -Exclude $scriptDir | Remove-Item -Force -Recurse
@@ -291,9 +291,9 @@ if ($userInput.ToLower() -eq "y") {
     # NOTES
     # =============================================
 
-    Write-Host "`n# =============================================" -ForegroundColor Green
-    Write-Host "`n# NOTES" -ForegroundColor Green
-    Write-Host "`n# =============================================" -ForegroundColor Green
+    Write-Host "`n=============================================" -ForegroundColor Green
+    Write-Host "NOTES" -ForegroundColor Green
+    Write-Host "=============================================" -ForegroundColor Green
 
     # Tell User to change their default font in PowerShell to Caskaydia Cove NF
     Write-Host "As it is currently not possible to set this with a PowerShell Command, please change your default font in PowerShell to Caskaydia Cove NF."
