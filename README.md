@@ -26,14 +26,14 @@ This is a script for setting up Windows to how I like it on a fresh install.
 
 ## To-Do List
 
-- Caskaydia Cove Font Install :x:
+- :x:Caskaydia Cove Font Install
   - Currently unable to get the font installed via PowerShell, so I've left instructions at the end of the script for the user to do it themselves!
-- Chocolatey :white_check_mark:
-- Clean up script so that it's more organized and more formal :construction:
+- :white_check_mark: Chocolatey
+- :construction: Clean up script so that it's more organized and more formal
   - I have it in a barely functioning state right now and I'd love to clean it up!
-- Configs :white_check_mark:
-- Information For User :white_check_mark:
-- PowerShell :white_check_mark:
-- Scoop :white_check_mark:
-- Windows 10 Compatibility :white_check_mark:
-- Windows 11 Compatibility :construction:
+- :white_check_mark: Configs
+- :white_check_mark: Information For User
+- :white_check_mark: PowerShell
+- :white_check_mark: Scoop
+- :white_check_mark: Windows 10 Compatibility
+- :construction: Windows 11 Compatibility
