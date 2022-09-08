@@ -15,22 +15,20 @@ $fontsDir = "C:\Windows\Fonts"
 $localAppDataDir = "~\AppData\Local"
 
 # Directories
-$caskaydiaDir = ""
-$caskaydiaZipDir = "$downloadDir\CascadiaCode.zip"
-$configDir = "$downloadDir\ConfigFiles"
-$powershellConfigDir = "$documentDir\PowerShell"
-$scriptDir = "$downloadDir\WindowsSetupScript-main\WindowsSetupScript-main"
-$wingetConfigDir = "$localAppDataDir\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState"
+$configDir = ""
+$powershellConfigDir = ""
+$scriptDir = ""
+$wingetConfigDir = ""
 
 # Configs
-$powershellJsonConfig = "$configDir\powershell.config.json"
-$powershellProfileConfig = "$configDir\Microsoft.PowerShell_profile.ps1"
-$starshipConfig = "$configDir\Starship\starship.toml"
-$wingetConfig = "$configDir\Winget\settings.json"
+$powershellJsonConfig = ""
+$powershellProfileConfig = ""
+$starshipConfig = ""
+$wingetConfig = ""
 
 # Miscellaneous
 $fontExists = $false
-$fonts = Get-ChildItem $caskaydiaDir | Where-Object -Property Name -Like "*Windows Compatible*"
+$fonts = ""
 $isInstalled = $false
 $powershellConfigDirExists = $false
 $userInput = ""
@@ -228,6 +226,12 @@ if ($userInput.ToLower() -eq "y") {
     Write-Host "`nDownloading the config files from GitHub."
     git clone $configUrl
 
+    # Directories
+    $configDir = "$downloadDir\ConfigFiles"
+    $powershellConfigDir = "$documentDir\PowerShell"
+    $scriptDir = "$downloadDir\WindowsSetupScript-main"
+    $wingetConfigDir = "$localAppDataDir\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState"
+
     # Check for PowerShell Config Directory
     Write-Host "Checking for the PowerShell Config Directory and creating it if it doesn't exist."
     $powershellConfigDirExists = Test-Path -Path $powershellConfigDir
@@ -236,6 +240,12 @@ if ($userInput.ToLower() -eq "y") {
         New-Item -Path $powershellConfigDir -ItemType Directory
     }
     
+
+    # Configs
+    $powershellJsonConfig = "$configDir\powershell.config.json"
+    $powershellProfileConfig = "$configDir\Microsoft.PowerShell_profile.ps1"
+    $starshipConfig = "$configDir\Starship\starship.toml"
+    $wingetConfig = "$configDir\Winget\settings.json"
 
     # Move files to correct location
     Write-Host "Moving config files to their correct locations."
@@ -255,11 +265,13 @@ if ($userInput.ToLower() -eq "y") {
 
     # Download Caskaydia Cove NF
     Write-Host "`nDownloading, extracting, and installing the Caskaydia Cove Font from Nerd Fonts."
-    Invoke-WebRequest -Uri $caskaydiaUrl -OutFile $caskaydiaZipDir
+    Invoke-WebRequest -Uri $caskaydiaUrl -OutFile "$downloadDir\CascadiaCode.zip"
 
     # Extract Caskaydia Cove NF
-    $caskaydiaDir = "$downloadDir\CascadiaCode"
-    Expand-Archive -Path $caskaydiaZipDir -DestinationPath $caskaydiaDir
+    Expand-Archive -Path $downloadDir\CascadiaCode.zip -DestinationPath "$downloadDir\CascadiaCode"
+
+    # Create array of fonts
+    $fonts = Get-ChildItem "$downloadDir\CascadiaCode" | Where-Object -Property Name -Like "*Windows Compatible*"
 
     # Install all Windows Compatible versions in the downloaded folder
     foreach ($font in $fonts) {
@@ -281,11 +293,11 @@ if ($userInput.ToLower() -eq "y") {
 
     # Delete desktop icons
     Write-Host "`nDeleting Desktop Icons that were created from program installs."
-    Get-ChildItem $desktopDir -Exclude $scriptDir | Remove-Item -Force -Recurse
+    Get-ChildItem $desktopDir | Remove-Item -Force -Recurse
 
     # Delete downloads
     Write-Host "Deleting downloads resulting from this script."
-    Get-ChildItem $downloadDir | Remove-Item -Force -Recurse
+    Get-ChildItem $downloadDir -Exclude $scriptDir | Remove-Item -Force -Recurse
 
     # Clear the recycle bin
     Write-Host "Emptying the Recycle Bin."
