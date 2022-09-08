@@ -139,6 +139,7 @@ if ($userInput.ToLower() -eq "y") {
             Start-Process "ms-appinstaller:?source=https://aka.ms/getwinget"
             $nid = (Get-Process AppInstaller).Id
             Wait-Process -Id $nid
+            Start-Sleep -s 5
             Write-Host "Winget Installed"
         }
         Write-Host "Winget is now installed."
