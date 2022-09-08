@@ -52,14 +52,14 @@ if ($userInput.ToLower() -eq "y") {
     Write-Host "=============================================" -ForegroundColor Green
 
     # Check if Chocolatey is installed already
-    Write-Host "`nChecking to see if Chocolatey is installed."
+    Write-Host "`nChecking to see if Chocolatey is installed.`n"
 
     if (choco -v) {
         $isInstalled = $true
     }
 
     if ($isInstalled -eq $false) {
-        Write-Host "Chocolatey was not installed. Downloading and installing now."
+        Write-Host "`nChocolatey was not installed. Downloading and installing now.`n"
 
         # Install
         [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
@@ -76,7 +76,6 @@ if ($userInput.ToLower() -eq "y") {
     Write-Host "=============================================" -ForegroundColor Green
 
     # Check if Winget is installed already and install it if not (I took this section from Chris Titus Tech's WinUtil located here: https://github.com/ChrisTitusTech/winutil/blob/main/winutil.ps1), so shoutout to him!
-
     if (((((Get-ComputerInfo).OSName.IndexOf("LTSC")) -ne -1) -or ((Get-ComputerInfo).OSName.IndexOf("Server") -ne -1)) -and (((Get-ComputerInfo).WindowsVersion) -ge "1809")) {
         #Checks if Windows edition is LTSC/Server 2019+
         #Manually Installing Winget
@@ -111,17 +110,16 @@ if ($userInput.ToLower() -eq "y") {
     }
     else {
         #Installing Winget from the Microsoft Store
-        Write-Host "Winget not found, installing it now."
+        Write-Host "`nWinget not found, installing it now."
         Start-Process "ms-appinstaller:?source=https://aka.ms/getwinget"
         $nid = (Get-Process AppInstaller).Id
         Wait-Process -Id $nid
         Start-Sleep -s 5
         Write-Host "Winget Installed"
     }
-    refreshenv
 
     # Install programs
-    Write-Host "Now installing programs via Winget."
+    Write-Host "Now installing programs via Winget.`n"
     winget install -e --id 7zip.7zip
     winget install -e --id Amazon.Games
     winget install -e --id Lexikos.AutoHotkey
@@ -159,7 +157,7 @@ if ($userInput.ToLower() -eq "y") {
     Write-Host "=============================================" -ForegroundColor Green
 
     # Check if Scoop is installed already
-    Write-Host "`nChecking to see if Scoop is installed."
+    Write-Host "`nChecking to see if Scoop is installed.`n"
     $isInstalled = $false
 
     if (scoop -v) {
@@ -167,22 +165,18 @@ if ($userInput.ToLower() -eq "y") {
     }
 
     if ($isInstalled -eq $false) {
-        Write-Host "Scoop was not installed. Downloading and installing now."
+        Write-Host "`nScoop was not installed. Downloading and installing now.`n"
 
         # Install
         Invoke-Expression "& {$(Invoke-RestMethod get.scoop.sh)} -RunAsAdmin"
-        Write-Host "Scoop is now installed."
+        Write-Host "`nScoop is now installed.`n"
     }
-
-    # Refresh PowerShell so that Git works for adding buckets to Scoop
-    Write-Host "Refreshing the environment so that Git is available for the Scoop Section."
-    refreshenv
 
     # Install 7zip and Git for bucket adding
     scoop install 7zip git
 
     # Add buckets
-    Write-Host "Now adding buckets and installing programs via Scoop."
+    Write-Host "`nNow adding buckets and installing programs via Scoop.`n"
     scoop bucket add main
     scoop bucket add extras
 
@@ -199,7 +193,7 @@ if ($userInput.ToLower() -eq "y") {
     Write-Host "=============================================" -ForegroundColor Green
 
     # Git clone repo
-    Write-Host "`nDownloading the config files from GitHub."
+    Write-Host "`nDownloading the config files from GitHub.`n"
     git clone $configUrl
 
     # Directories
@@ -210,7 +204,7 @@ if ($userInput.ToLower() -eq "y") {
     $wingetConfigDest = "$localAppDataDir\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState"
 
     # Check for PowerShell Config Directory
-    Write-Host "Checking for the PowerShell Config Directory and creating it if it doesn't exist."
+    Write-Host "`nChecking for the PowerShell Config Directory and creating it if it doesn't exist."
     $powershellConfigDestExists = Test-Path -Path $powershellConfigDest
 
     if ($powershellConfigDestExists -eq $false) {
@@ -224,7 +218,7 @@ if ($userInput.ToLower() -eq "y") {
     $wingetConfig = "$configDir\Winget\settings.json"
 
     # Move files to correct location
-    Write-Host "Moving config files to their correct locations."
+    Write-Host "`nMoving config files to their correct locations."
     Copy-Item $powershellJsonConfig -Destination $powershellConfigDest
     Copy-Item $powershellProfileConfig -Destination $powershellConfigDest
     Copy-Item $starshipConfig -Destination $dotConfigDir
@@ -240,23 +234,11 @@ if ($userInput.ToLower() -eq "y") {
     Write-Host "=============================================" -ForegroundColor Green
 
     # Download Caskaydia Cove NF
-    Write-Host "`nDownloading, extracting, and installing the Caskaydia Cove Font from Nerd Fonts."
+    Write-Host "`nDownloading and extracting the Caskaydia Cove Font from Nerd Fonts."
     Invoke-WebRequest -Uri $caskaydiaUrl -OutFile "$downloadDir\CascadiaCode.zip"
 
     # Extract Caskaydia Cove NF
     Expand-Archive -Path $downloadDir\CascadiaCode.zip -DestinationPath "$downloadDir\CascadiaCode"
-
-    # Create array of fonts
-    $fonts = Get-ChildItem "$downloadDir\CascadiaCode" | Where-Object -Property Name -Like "*Windows Compatible*"
-
-    # Install all Windows Compatible versions in the downloaded folder
-    foreach ($font in $fonts) {
-        $fontExists = Test-Path -Path $fontsDir\$font.Name
-
-        if ($fontExists -eq $false) {
-            Copy-Item "$downloadDir\CascadiaCode\$font" -Destination $fontsDir -Force
-        }
-    }
 
 
     # =============================================
@@ -271,10 +253,6 @@ if ($userInput.ToLower() -eq "y") {
     Write-Host "`nDeleting Desktop Icons that were created from program installs."
     Get-ChildItem $desktopDir | Remove-Item -Force -Recurse
 
-    # Delete downloads
-    Write-Host "Deleting downloads resulting from this script."
-    Get-ChildItem $downloadDir | Remove-Item -Force -Recurse
-
     # Clear the recycle bin
     Write-Host "Emptying the Recycle Bin."
     Clear-RecycleBin -Force
@@ -287,8 +265,9 @@ if ($userInput.ToLower() -eq "y") {
     Write-Host "NOTES" -ForegroundColor Green
     Write-Host "=============================================" -ForegroundColor Green
 
-    # Tell User to change their default font in PowerShell to Caskaydia Cove NF
-    Write-Host "`nAs it is currently not possible to set this with a PowerShell Command, please change your default font in PowerShell to Caskaydia Cove NF."
+    # Tell user to change install the font and make it their default font in PowerShell
+    Write-Host "`nI have yet to figure out how to install fonts using PowerShell, so in the meantime, please go to the downloads\CascadiaCode and install the fonts with "Windows Compatible" in the title."
+    Write-Host "`Once you've installed the fonts, please change your default font in PowerShell to Caskaydia Cove NF."
 
 }
 

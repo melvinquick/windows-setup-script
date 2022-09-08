@@ -16,30 +16,10 @@ This is a script for setting up Windows to how I like it on a fresh install.
 
 ## To-Do List
 
-- Caskaydia Cove Font :construction:
-
-  - Get all Windows Compatible Sets of Caskaydia Cove Nerd Font installed :white_check_mark:
-  - Set default font in PowerShell to Caskaydia Cove Nerd Font :x:
-
+- Caskaydia Cove Font Install :x:
+  - Currently unable to get the font installed via PowerShell, so I've left instructions at the end of the script for the user to do it themselves!
 - Chocolatey :white_check_mark:
-
-  - Add section for installing Chocolatey
-
+- Configs :white_check_mark:
+- Information For User :white_check_mark:
 - PowerShell :white_check_mark:
-
-  - Add check for PowerShell Config Directory Path and create it if it doesn't exist
-  - Add a way to refresh the environment when needed for Winget and Git pickup
-  - Add exit command at end to get out of nested PowerShell
-
 - Scoop :white_check_mark:
-
-  - Add a check to see if scoop is installed already
-
-- Winget :white_check_mark:
-
-  - Add a check to see if Winget is installed already
-
-- Information For User :construction:
-
-  - Add Write-Host commands for each new section so that the user knows where they're at in the script :white_check_mark:
-  - Suppress output of useless information (i.e. winget saying that it's not recognized juct because I ran winget -v to check to see if it was installed or not) :x:
