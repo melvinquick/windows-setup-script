@@ -7,31 +7,12 @@ $caskaydiaUrl = "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.
 $configUrl = "https://github.com/cquick00/ConfigFiles.git"
 
 # System Directories
-$configDir = "~\.config"
+$dotConfigDir = "~\.config"
 $desktopDir = "~\Desktop"
 $documentDir = "~\Documents"
 $downloadDir = "~\Downloads"
 $fontsDir = "C:\Windows\Fonts"
 $localAppDataDir = "~\AppData\Local"
-
-# Directories
-$configDir = ""
-$powershellConfigDir = ""
-$scriptDir = ""
-$wingetConfigDir = ""
-
-# Configs
-$powershellJsonConfig = ""
-$powershellProfileConfig = ""
-$starshipConfig = ""
-$wingetConfig = ""
-
-# Miscellaneous
-$fontExists = $false
-$fonts = ""
-$isInstalled = $false
-$powershellConfigDirExists = $false
-$userInput = ""
 
 
 # =============================================
@@ -228,13 +209,14 @@ if ($userInput.ToLower() -eq "y") {
 
     # Directories
     $configDir = "$downloadDir\ConfigFiles"
-    $powershellConfigDir = "$documentDir\PowerShell"
-    $scriptDir = "$downloadDir\WindowsSetupScript-main"
-    $wingetConfigDir = "$localAppDataDir\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState"
+
+    # Destinations
+    $powershellConfigDest = "$documentDir\PowerShell"
+    $wingetConfigDest = "$localAppDataDir\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState"
 
     # Check for PowerShell Config Directory
     Write-Host "Checking for the PowerShell Config Directory and creating it if it doesn't exist."
-    $powershellConfigDirExists = Test-Path -Path $powershellConfigDir
+    $powershellConfigDirExists = Test-Path -Path $powershellConfigDest
 
     if ($powershellConfigDirExists -eq $false) {
         New-Item -Path $powershellConfigDir -ItemType Directory
@@ -242,17 +224,17 @@ if ($userInput.ToLower() -eq "y") {
     
 
     # Configs
-    $powershellJsonConfig = "$configDir\powershell.config.json"
-    $powershellProfileConfig = "$configDir\Microsoft.PowerShell_profile.ps1"
+    $powershellJsonConfig = "$configDir\PowerShell\powershell.config.json"
+    $powershellProfileConfig = "$configDir\PowerShell\Microsoft.PowerShell_profile.ps1"
     $starshipConfig = "$configDir\Starship\starship.toml"
     $wingetConfig = "$configDir\Winget\settings.json"
 
     # Move files to correct location
     Write-Host "Moving config files to their correct locations."
-    Copy-Item $powershellProfileConfig -Destination $powershellConfigDir
-    Copy-Item $powershellJsonConfig -Destination $powershellConfigDir
-    Copy-Item $starshipConfig -Destination $configDir
-    Copy-Item $wingetConfig -Destination $wingetConfigDir
+    Copy-Item $powershellJsonConfig -Destination $powershellConfigDest
+    Copy-Item $powershellProfileConfig -Destination $powershellConfigDest
+    Copy-Item $starshipConfig -Destination $dotConfigDir
+    Copy-Item $wingetConfig -Destination $wingetConfigDest
 
 
     # =============================================
@@ -278,7 +260,7 @@ if ($userInput.ToLower() -eq "y") {
         $fontExists = Test-Path -Path $fontsDir\$font.Name
 
         if ($fontExists -eq $false) {
-            Copy-Item $font -Destination $fontsDir
+            Copy-Item "$downloadDir\CascadiaCode\$font" -Destination $fontsDir -Force
         }
     }
 
@@ -297,7 +279,7 @@ if ($userInput.ToLower() -eq "y") {
 
     # Delete downloads
     Write-Host "Deleting downloads resulting from this script."
-    Get-ChildItem $downloadDir -Exclude $scriptDir | Remove-Item -Force -Recurse
+    Get-ChildItem $downloadDir | Remove-Item -Force -Recurse
 
     # Clear the recycle bin
     Write-Host "Emptying the Recycle Bin."
