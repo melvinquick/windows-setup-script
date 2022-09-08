@@ -171,6 +171,9 @@ if ($userInput.ToLower() -eq "y") {
     Write-Host "Refreshing the environment so that Git is available for the Scoop Section."
     refreshenv
 
+    # Install 7zip and Git for bucket adding
+    scoop install 7zip git
+    
     # Add buckets
     Write-Host "Now adding buckets and installing programs via Scoop."
     scoop bucket add main
