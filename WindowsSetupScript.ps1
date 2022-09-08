@@ -11,12 +11,9 @@ $dotConfigDir = "~\.config"
 $desktopDir = "~\Desktop"
 $documentDir = "~\Documents"
 $downloadDir = "~\Downloads"
-$fontsDir = "C:\Windows\Fonts"
 $localAppDataDir = "~\AppData\Local"
 
 # Miscellaneous
-$fontExists = $false
-$fonts = ""
 $isInstalled = $false
 $userInput = ""
 
@@ -266,8 +263,9 @@ if ($userInput.ToLower() -eq "y") {
     Write-Host "=============================================" -ForegroundColor Green
 
     # Tell user to change install the font and make it their default font in PowerShell
-    Write-Host "`nI have yet to figure out how to install fonts using PowerShell, so in the meantime, please go to the downloads\CascadiaCode and install the fonts with "Windows Compatible" in the title."
-    Write-Host "`Once you've installed the fonts, please change your default font in PowerShell to Caskaydia Cove NF."
+    Write-Host "`nI have yet to figure out how to install fonts using PowerShell."
+    Write-Host "In the meantime, please go to the downloads\CascadiaCode and install the fonts with "Windows Compatible" in the title."
+    Write-Host "`nOnce you've installed the fonts, please change your default font in PowerShell to CaskaydiaCove NF."
 
 }
 
