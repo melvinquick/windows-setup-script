@@ -209,6 +209,7 @@ if ($userInput.ToLower() -eq "y") {
     }
     
     # Configs
+    $powershellBannerConfig = "$configDir\PowerShell\banner.txt"
     $powershellJsonConfig = "$configDir\PowerShell\powershell.config.json"
     $powershellProfileConfig = "$configDir\PowerShell\Microsoft.PowerShell_profile.ps1"
     $starshipConfig = "$configDir\Starship\starship.toml"
@@ -216,6 +217,7 @@ if ($userInput.ToLower() -eq "y") {
 
     # Move files to correct location
     Write-Host "`nMoving config files to their correct locations."
+    Copy-Item $powershellBannerConfig -Destination $powershellConfigDest
     Copy-Item $powershellJsonConfig -Destination $powershellConfigDest
     Copy-Item $powershellProfileConfig -Destination $powershellConfigDest
     Copy-Item $starshipConfig -Destination $dotConfigDir
