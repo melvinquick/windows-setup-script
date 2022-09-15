@@ -13,10 +13,11 @@ This is a script for setting up Windows to how I like it on a fresh install.
   - Set-Location -Path "WindowsSetupScript-main\WindowsSetupScript-main"
   - Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope Process
   - .\WindowsSetupScript.ps1
+- Change default font in PowerShell to CaskaydiaCove Nerd Font
 
 **Optional**
 
-- Once you finish installing and setting the fonts, you can then delete everything in your Downloads folder as it's no longer needed.
+- Once the script is done, you can then delete anything remaining in your Downloads folder as it's no longer needed.
 
 ## Notes
 
