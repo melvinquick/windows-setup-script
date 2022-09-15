@@ -3,7 +3,6 @@
 # =============================================
 
 # URLs
-$caskaydiaUrl = "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/CascadiaCode.zip"
 $configUrl = "https://github.com/cquick00/ConfigFiles.git"
 
 # System Directories
@@ -62,6 +61,9 @@ if ($userInput.ToLower() -eq "y") {
         [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
         Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1')) | Out-Null
     }
+
+    # Install Caskaydia Cove Nerd Font
+    choco install cascadia-code-nerd-font
 
 
     # =============================================
@@ -225,22 +227,6 @@ if ($userInput.ToLower() -eq "y") {
 
 
     # =============================================
-    # FONT
-    # =============================================
-
-    Write-Host "`n=============================================" -ForegroundColor Green
-    Write-Host "FONT" -ForegroundColor Green
-    Write-Host "=============================================" -ForegroundColor Green
-
-    # Download Caskaydia Cove NF
-    Write-Host "`nDownloading and extracting the Caskaydia Cove Font from Nerd Fonts."
-    Invoke-WebRequest -Uri $caskaydiaUrl -OutFile "$downloadDir\CascadiaCode.zip"
-
-    # Extract Caskaydia Cove NF
-    Expand-Archive -Path $downloadDir\CascadiaCode.zip -DestinationPath "$downloadDir\CascadiaCode"
-
-
-    # =============================================
     # CLEANUP
     # =============================================
 
@@ -264,10 +250,8 @@ if ($userInput.ToLower() -eq "y") {
     Write-Host "NOTES" -ForegroundColor Green
     Write-Host "=============================================" -ForegroundColor Green
 
-    # Tell user to change install the font and make it their default font in PowerShell
-    Write-Host "`nI have yet to figure out how to install fonts using PowerShell."
-    Write-Host "In the meantime, please go to the downloads\CascadiaCode and install the fonts with "Windows Compatible" in the title."
-    Write-Host "`nOnce you've installed the fonts, please change your default font in PowerShell to CaskaydiaCove NF."
+    # Tell user to change install the font and make it their default font in PowerShell"
+    Write-Host "`nPlease change your default font in PowerShell to CaskaydiaCove Nerd Font."
 
 }
 

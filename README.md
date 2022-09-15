@@ -23,11 +23,10 @@ This is a script for setting up Windows to how I like it on a fresh install.
 - This script is in a usable state on Windows 10 and is untested on Windows 11.
 - This script is EXTREMELY loosely put together right now. Basically just enough to get it to work FOR ME.
   - If you'd like to use it, fork it, or anything else, please do; however, I am NOT responsible for anything breaking on your system.
-- Currently unable to get the font(s) installed via PowerShell, so I've left instructions at the end of the script for the user to do it themselves!
 
 ## To-Do List
 
-- :x:Caskaydia Cove Font Install (See Notes Section for more info)
+- :white_check_mark: CaskaydiaCove Nerd Font Install
 - :white_check_mark: Chocolatey
 - :construction: Clean up script so that it's more organized and more formal
 - :white_check_mark: Configs
