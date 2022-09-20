@@ -6,9 +6,10 @@
 $configUrl = "https://github.com/cquick00/ConfigFiles.git"
 
 # System Directories
-$dotConfigDir = "~\.config"
+$appDataDir = "~\AppData"
 $desktopDir = "~\Desktop"
 $documentDir = "~\Documents"
+$dotConfigDir = "~\.config"
 $downloadDir = "~\Downloads"
 $localAppDataDir = "~\AppData\Local"
 
@@ -142,6 +143,7 @@ if ($userInput.ToLower() -eq "y") {
     winget install -e --id Starship.Starship
     winget install -e --id Valve.Steam
     winget install -e --id Streamlabs.Streamlabs
+    winget install -e --id Eugeny.Tabby
     winget install -e --id Ubisoft.Connect
     winget install -e --id VideoLAN.VLC
     winget install -e --id Microsoft.VisualStudioCode
@@ -200,6 +202,7 @@ if ($userInput.ToLower() -eq "y") {
 
     # Destinations
     $powershellConfigDest = "$documentDir\PowerShell"
+    $tabbyConfigDest = "$appDataDir\tabby"
     $wingetConfigDest = "$localAppDataDir\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState"
 
     # Check for PowerShell Config Directory
@@ -215,6 +218,7 @@ if ($userInput.ToLower() -eq "y") {
     $powershellJsonConfig = "$configDir\PowerShell\powershell.config.json"
     $powershellProfileConfig = "$configDir\PowerShell\Microsoft.PowerShell_profile.ps1"
     $starshipConfig = "$configDir\Starship\starship.toml"
+    $tabbyConfig = "$configDir\Tabby\config.yaml"
     $wingetConfig = "$configDir\Winget\settings.json"
 
     # Move files to correct location
@@ -223,6 +227,7 @@ if ($userInput.ToLower() -eq "y") {
     Copy-Item $powershellJsonConfig -Destination $powershellConfigDest
     Copy-Item $powershellProfileConfig -Destination $powershellConfigDest
     Copy-Item $starshipConfig -Destination $dotConfigDir
+    Copy-Item $tabbyConfig -Destination $tabbyConfigDest
     Copy-Item $wingetConfig -Destination $wingetConfigDest
 
 
