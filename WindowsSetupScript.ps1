@@ -180,7 +180,6 @@ if ($userInput.ToLower() -eq "y") {
 
     # Add buckets
     Write-Host "`nNow adding buckets and installing programs via Scoop.`n"
-    scoop bucket add main
     scoop bucket add extras
 
     # Install programs
