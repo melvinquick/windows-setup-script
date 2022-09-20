@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This is a script for setting up Windows to how I like it on a fresh install.
+This is a script for setting up Windows to how I like it on a fresh install. it b
 
 ## Instructions
 
@@ -18,6 +18,7 @@ This is a script for setting up Windows to how I like it on a fresh install.
 **Optional**
 
 - Once the script is done, you can then delete anything remaining in your Downloads folder as it's no longer needed.
+- A restart is recommended, but not necessary.
 
 ## Notes
 
@@ -27,9 +28,11 @@ This is a script for setting up Windows to how I like it on a fresh install.
 
 ## To-Do List
 
+- :construction: AutoHotkey
 - :white_check_mark: CaskaydiaCove Nerd Font Install
 - :white_check_mark: Chocolatey
 - :construction: Clean up script so that it's more organized and more formal
+- :construction: Clean up unneeded output
 - :white_check_mark: Configs
 - :white_check_mark: Information For User
 - :white_check_mark: PowerShell

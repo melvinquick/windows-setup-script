@@ -12,6 +12,7 @@ $documentDir = "~\Documents"
 $dotConfigDir = "~\.config"
 $downloadDir = "~\Downloads"
 $localAppDataDir = "~\AppData\Local"
+$publicDesktopDir = "C:\Users\Public\Desktop"
 
 # Miscellaneous
 $isInstalled = $false
@@ -242,6 +243,7 @@ if ($userInput.ToLower() -eq "y") {
     # Delete desktop icons
     Write-Host "`nDeleting Desktop Icons that were created from program installs."
     Get-ChildItem $desktopDir | Remove-Item -Force -Recurse
+    Get-ChildItem $publicDesktopDir | Remove-Item -Force -Recurse
 
     # Clear the recycle bin
     Write-Host "Emptying the Recycle Bin."
