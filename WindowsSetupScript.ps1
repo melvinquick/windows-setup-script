@@ -17,6 +17,7 @@ $publicDesktopDir = "C:\Users\Public\Desktop"
 # Miscellaneous
 $isInstalled = $false
 $userInput = ""
+$waitTime = 15
 
 
 # =============================================
@@ -213,6 +214,11 @@ if ($userInput.ToLower() -eq "y") {
     if ($powershellConfigDestExists -eq $false) {
         New-Item -Path $powershellConfigDest -ItemType Directory
     }
+
+    # Run Tabby and then kill the process after waiting some time so that the %APPDATA%\tabby directory gets created
+    Start-Process "$localAppDataDir\Programs\Tabby\Tabby.exe"
+    Start-Sleep -Seconds $waitTime
+    taskkill.exe /IM Tabby.exe /F
     
     # Configs
     $powershellBannerConfig = "$configDir\PowerShell\banner.txt"
