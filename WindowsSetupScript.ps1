@@ -13,6 +13,7 @@ $dotConfigDir = "~\.config"
 $downloadDir = "~\Downloads"
 $localAppDataDir = "~\AppData\Local"
 $publicDesktopDir = "C:\Users\Public\Desktop"
+$tempDir = "~\AppData\Local\Temp"
 
 # Miscellaneous
 $isInstalled = $false
@@ -123,8 +124,10 @@ if ($userInput.ToLower() -eq "y") {
     # Install programs
     Write-Host "Now installing programs via Winget.`n"
     winget install -e --id 7zip.7zip
+    winget install -e --id Alacritty.Alacritty
     winget install -e --id Amazon.Games
     winget install -e --id Lexikos.AutoHotkey
+    winget install -e --id Balena.Etcher
     winget install -e --id BraveSoftware.BraveBrowser
     winget install -e --id Discord.Discord
     winget install -e --id ElectronicArts.EADesktop
@@ -142,11 +145,10 @@ if ($userInput.ToLower() -eq "y") {
     winget install -e --id dangeredwolf.ModernDeck
     winget install -e --id Microsoft.PowerShell
     winget install -e --id Python.Python.3
+    winget install -e --id Rustlang.Rustup
     winget install -e --id Starship.Starship
     winget install -e --id Valve.Steam
     winget install -e --id Streamlabs.Streamlabs
-    winget install -e --id Eugeny.Tabby
-    winget install -e --id Ubisoft.Connect
     winget install -e --id VideoLAN.VLC
     winget install -e --id Microsoft.VisualStudioCode
 
@@ -202,9 +204,18 @@ if ($userInput.ToLower() -eq "y") {
     $configDir = "$downloadDir\ConfigFiles"
 
     # Destinations
+    $alacrittyConfigDest = "$appDataDir\Alacritty"
     $powershellConfigDest = "$documentDir\PowerShell"
-    $tabbyConfigDest = "$appDataDir\tabby"
     $wingetConfigDest = "$localAppDataDir\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState"
+
+
+    # Check for Alacritty Config Directory
+    Write-Host "`nChecking for the Alacritty Config Directory and creating it if it doesn't exist."
+    $alacrittyConfigDestExists = Test-Path -Path $alacrittyConfigDest
+
+    if ($alacrittyConfigDestExists -eq $false) {
+        New-Item -Path $alacrittyConfigDest -ItemType Directory
+    }
 
     # Check for PowerShell Config Directory
     Write-Host "`nChecking for the PowerShell Config Directory and creating it if it doesn't exist."
@@ -213,27 +224,22 @@ if ($userInput.ToLower() -eq "y") {
     if ($powershellConfigDestExists -eq $false) {
         New-Item -Path $powershellConfigDest -ItemType Directory
     }
-
-    # Run Tabby and then kill the process after waiting some time so that the %APPDATA%\tabby directory gets created
-    Start-Process "$localAppDataDir\Programs\Tabby\Tabby.exe"
-    Start-Sleep -Seconds $waitTime
-    taskkill.exe /IM Tabby.exe /F
     
     # Configs
+    $alacrittyConfig = "$configDir\Alacritty\alacritty.yaml"
     $powershellBannerConfig = "$configDir\PowerShell\banner.txt"
     $powershellJsonConfig = "$configDir\PowerShell\powershell.config.json"
     $powershellProfileConfig = "$configDir\PowerShell\Microsoft.PowerShell_profile.ps1"
     $starshipConfig = "$configDir\Starship\starship.toml"
-    $tabbyConfig = "$configDir\Tabby\config.yaml"
     $wingetConfig = "$configDir\Winget\settings.json"
 
     # Move files to correct location
     Write-Host "`nMoving config files to their correct locations."
+    Copy-Item $alacrittyConfig -Destination $alacrittyConfigDest
     Copy-Item $powershellBannerConfig -Destination $powershellConfigDest
     Copy-Item $powershellJsonConfig -Destination $powershellConfigDest
     Copy-Item $powershellProfileConfig -Destination $powershellConfigDest
     Copy-Item $starshipConfig -Destination $dotConfigDir
-    Copy-Item $tabbyConfig -Destination $tabbyConfigDest
     Copy-Item $wingetConfig -Destination $wingetConfigDest
 
 
@@ -249,6 +255,7 @@ if ($userInput.ToLower() -eq "y") {
     Write-Host "`nDeleting Desktop Icons that were created from program installs."
     Get-ChildItem $desktopDir | Remove-Item -Force -Recurse
     Get-ChildItem $publicDesktopDir | Remove-Item -Force -Recurse
+    Get-ChildItem $tempDir | Remove-Item -Force -Recurse
 
     # Clear the recycle bin
     Write-Host "Emptying the Recycle Bin."
