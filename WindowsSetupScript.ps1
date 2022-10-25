@@ -18,7 +18,6 @@ $tempDir = "~\AppData\Local\Temp"
 # Miscellaneous
 $isInstalled = $false
 $userInput = ""
-$waitTime = 15
 
 
 # =============================================
