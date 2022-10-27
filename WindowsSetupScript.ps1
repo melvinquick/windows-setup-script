@@ -225,7 +225,7 @@ if ($userInput.ToLower() -eq "y") {
     }
     
     # Configs
-    $alacrittyConfig = "$configDir\Alacritty\alacritty.yaml"
+    $alacrittyConfig = "$configDir\Alacritty\alacritty.yml"
     $powershellBannerConfig = "$configDir\PowerShell\banner.txt"
     $powershellJsonConfig = "$configDir\PowerShell\powershell.config.json"
     $powershellProfileConfig = "$configDir\PowerShell\Microsoft.PowerShell_profile.ps1"
