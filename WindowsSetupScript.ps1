@@ -127,7 +127,7 @@ if ($userInput.ToLower() -eq "y") {
     winget install -e --id Amazon.Games
     winget install -e --id Lexikos.AutoHotkey
     winget install -e --id Balena.Etcher
-    winget install -e --id BraveSoftware.BraveBrowser
+    winget install -e --id Brave.Brave
     winget install -e --id Discord.Discord
     winget install -e --id ElectronicArts.EADesktop
     winget install -e --id File-New-Project.EarTrumpet
