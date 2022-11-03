@@ -226,6 +226,7 @@ if ($userInput.ToLower() -eq "y") {
     
     # Configs
     $alacrittyConfig = "$configDir\Alacritty\alacritty.yml"
+    $alacrittyDraculaThemeConfig = "$configDir\Alacritty\dracula.yml"
     $powershellBannerCrowns = "$configDir\PowerShell\crowns.txt"
     $powershellBannerKingKairos = "$configDir\PowerShell\kingkairos.txt"
     $powershellJsonConfig = "$configDir\PowerShell\powershell.config.json"
@@ -236,6 +237,7 @@ if ($userInput.ToLower() -eq "y") {
     # Move files to correct location
     Write-Host "`nMoving config files to their correct locations."
     Copy-Item $alacrittyConfig -Destination $alacrittyConfigDest
+    Copy-Item $alacrittyDraculaThemeConfig -Destination $alacrittyConfigDest
     Copy-Item $powershellBannerCrowns -Destination $powershellConfigDest
     Copy-Item $powershellBannerKingKairos -Destination $powershellConfigDest
     Copy-Item $powershellJsonConfig -Destination $powershellConfigDest
