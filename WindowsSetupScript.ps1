@@ -204,9 +204,9 @@ if ($userInput.ToLower() -eq "y") {
 
     # Destinations
     $alacrittyConfigDest = "$appDataDir\Alacritty"
+    $betterDiscordThemeDest = "$appDataDir\BetterDiscord\themes"
     $powershellConfigDest = "$documentDir\PowerShell"
     $wingetConfigDest = "$localAppDataDir\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState"
-
 
     # Check for Alacritty Config Directory
     Write-Host "`nChecking for the Alacritty Config Directory and creating it if it doesn't exist."
@@ -214,6 +214,14 @@ if ($userInput.ToLower() -eq "y") {
 
     if ($alacrittyConfigDestExists -eq $false) {
         New-Item -Path $alacrittyConfigDest -ItemType Directory
+    }
+
+    # Check for BetterDiscord Config Directory
+    Write-Host "`nChecking for the BetterDiscord Theme Directory and creating it if it doesn't exist."
+    $betterDiscordThemeDestExists = Test-Path -Path $betterDiscordThemeDest
+
+    if ($betterDiscordThemeDestExists -eq $false) {
+        New-Item -Path $betterDiscordThemeDest -ItemType Directory
     }
 
     # Check for PowerShell Config Directory
@@ -227,6 +235,7 @@ if ($userInput.ToLower() -eq "y") {
     # Configs
     $alacrittyConfig = "$configDir\Alacritty\alacritty.yml"
     $alacrittyDraculaThemeConfig = "$configDir\Alacritty\dracula.yml"
+    $betterDiscordDraculaThemeConfig = "$configDir\BetterDiscord\Dracula.theme.css"
     $powershellBannerCrowns = "$configDir\PowerShell\crowns.txt"
     $powershellBannerKingKairos = "$configDir\PowerShell\kingkairos.txt"
     $powershellJsonConfig = "$configDir\PowerShell\powershell.config.json"
@@ -238,6 +247,7 @@ if ($userInput.ToLower() -eq "y") {
     Write-Host "`nMoving config files to their correct locations."
     Copy-Item $alacrittyConfig -Destination $alacrittyConfigDest
     Copy-Item $alacrittyDraculaThemeConfig -Destination $alacrittyConfigDest
+    Copy-Item $betterDiscordDraculaThemeConfig -Destination $betterDiscordThemeDest
     Copy-Item $powershellBannerCrowns -Destination $powershellConfigDest
     Copy-Item $powershellBannerKingKairos -Destination $powershellConfigDest
     Copy-Item $powershellJsonConfig -Destination $powershellConfigDest
