@@ -13,6 +13,7 @@ $dotConfigDir = "~\.config"
 $downloadDir = "~\Downloads"
 $localAppDataDir = "~\AppData\Local"
 $publicDesktopDir = "C:\Users\Public\Desktop"
+$scoopDir = "~\scoop"
 $tempDir = "~\AppData\Local\Temp"
 
 # Miscellaneous
@@ -205,6 +206,7 @@ if ($userInput.ToLower() -eq "y") {
     # Destinations
     $alacrittyConfigDest = "$appDataDir\Alacritty"
     $betterDiscordThemeDest = "$appDataDir\BetterDiscord\themes"
+    $ghostwriterThemeDest = "$scoopDir\apps\ghostwriter\current\data\themes"
     $powershellConfigDest = "$documentDir\PowerShell"
     $wingetConfigDest = "$localAppDataDir\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState"
 
@@ -224,6 +226,14 @@ if ($userInput.ToLower() -eq "y") {
         New-Item -Path $betterDiscordThemeDest -ItemType Directory
     }
 
+    # Check for Ghostwriter Config Directory
+    Write-Host "`nChecking for the BetterDiscord Theme Directory and creating it if it doesn't exist."
+    $ghostwriterThemeDestExists = Test-Path -Path $ghostwriterThemeDest
+
+    if ($betterDiscordThemeDestExists -eq $false) {
+        New-Item -Path $ghostwriterThemeDest -ItemType Directory
+    }
+
     # Check for PowerShell Config Directory
     Write-Host "`nChecking for the PowerShell Config Directory and creating it if it doesn't exist."
     $powershellConfigDestExists = Test-Path -Path $powershellConfigDest
@@ -236,6 +246,7 @@ if ($userInput.ToLower() -eq "y") {
     $alacrittyConfig = "$configDir\Alacritty\alacritty.yml"
     $alacrittyDraculaThemeConfig = "$configDir\Alacritty\dracula.yml"
     $betterDiscordDraculaThemeConfig = "$configDir\BetterDiscord\Dracula.theme.css"
+    $ghostwriterThemeConfig = "$configDir\Ghostwriter\Dracula.json"
     $powershellBannerCrowns = "$configDir\PowerShell\crowns.txt"
     $powershellBannerKingKairos = "$configDir\PowerShell\kingkairos.txt"
     $powershellJsonConfig = "$configDir\PowerShell\powershell.config.json"
@@ -248,6 +259,7 @@ if ($userInput.ToLower() -eq "y") {
     Copy-Item $alacrittyConfig -Destination $alacrittyConfigDest
     Copy-Item $alacrittyDraculaThemeConfig -Destination $alacrittyConfigDest
     Copy-Item $betterDiscordDraculaThemeConfig -Destination $betterDiscordThemeDest
+    Copy-Item $ghostwriterThemeConfig -Destination $ghostwriterThemeDest
     Copy-Item $powershellBannerCrowns -Destination $powershellConfigDest
     Copy-Item $powershellBannerKingKairos -Destination $powershellConfigDest
     Copy-Item $powershellJsonConfig -Destination $powershellConfigDest
