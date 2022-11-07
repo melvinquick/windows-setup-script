@@ -230,7 +230,7 @@ if ($userInput.ToLower() -eq "y") {
     Write-Host "`nChecking for the BetterDiscord Theme Directory and creating it if it doesn't exist."
     $ghostwriterThemeDestExists = Test-Path -Path $ghostwriterThemeDest
 
-    if ($betterDiscordThemeDestExists -eq $false) {
+    if ($ghostwriterThemeDestExists -eq $false) {
         New-Item -Path $ghostwriterThemeDest -ItemType Directory
     }
 
