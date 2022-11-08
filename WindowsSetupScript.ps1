@@ -7,6 +7,7 @@ $configUrl = "https://github.com/cquick00/ConfigFiles.git"
 
 # System Directories
 $appDataDir = "~\AppData"
+$betterDiscordDir = "~\AppData\BetterDiscord"
 $desktopDir = "~\Desktop"
 $documentDir = "~\Documents"
 $dotConfigDir = "~\.config"
@@ -205,7 +206,8 @@ if ($userInput.ToLower() -eq "y") {
 
     # Destinations
     $alacrittyConfigDest = "$appDataDir\Alacritty"
-    $betterDiscordThemeDest = "$appDataDir\BetterDiscord\themes"
+    $betterDiscordThemeDest = "$betterDiscordDir\themes"
+    $betterDiscordPluginDest = "$betterDiscordDir\plugins"
     $ghostwriterThemeDest = "$scoopDir\apps\ghostwriter\current\data\themes"
     $powershellConfigDest = "$documentDir\PowerShell"
     $wingetConfigDest = "$localAppDataDir\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState"
@@ -218,12 +220,20 @@ if ($userInput.ToLower() -eq "y") {
         New-Item -Path $alacrittyConfigDest -ItemType Directory
     }
 
-    # Check for BetterDiscord Config Directory
+    # Check for BetterDiscord Theme Directory
     Write-Host "`nChecking for the BetterDiscord Theme Directory and creating it if it doesn't exist."
     $betterDiscordThemeDestExists = Test-Path -Path $betterDiscordThemeDest
 
     if ($betterDiscordThemeDestExists -eq $false) {
         New-Item -Path $betterDiscordThemeDest -ItemType Directory
+    }
+
+    # Check for BetterDiscord Plugin Directory
+    Write-Host "`nChecking for the BetterDiscord Theme Directory and creating it if it doesn't exist."
+    $betterDiscordPluginDestExists = Test-Path -Path $betterDiscordPluginDest
+
+    if ($betterDiscordPluginDestExists -eq $false) {
+        New-Item -Path $betterDiscordPluginDest -ItemType Directory
     }
 
     # Check for Ghostwriter Config Directory
@@ -245,7 +255,9 @@ if ($userInput.ToLower() -eq "y") {
     # Configs
     $alacrittyConfig = "$configDir\Alacritty\alacritty.yml"
     $alacrittyDraculaThemeConfig = "$configDir\Alacritty\dracula.yml"
-    $betterDiscordDraculaThemeConfig = "$configDir\BetterDiscord\Dracula.theme.css"
+    $betterDiscordDraculaThemeConfig = "$configDir\BetterDiscord\Themes\Dracula.theme.css"
+    $betterDiscordBdfdbPlugin = "$configDir\BetterDiscord\Plugins\0BDFDB.plugin.js"
+    $betterDiscordSpellCheckPlugin = "$configDir\BetterDiscord\Plugins\SpellCheck.plugin.js"
     $ghostwriterThemeConfig = "$configDir\Ghostwriter\Dracula.json"
     $powershellBannerCrowns = "$configDir\PowerShell\crowns.txt"
     $powershellBannerKingKairos = "$configDir\PowerShell\kingkairos.txt"
@@ -259,6 +271,8 @@ if ($userInput.ToLower() -eq "y") {
     Copy-Item $alacrittyConfig -Destination $alacrittyConfigDest
     Copy-Item $alacrittyDraculaThemeConfig -Destination $alacrittyConfigDest
     Copy-Item $betterDiscordDraculaThemeConfig -Destination $betterDiscordThemeDest
+    Copy-Item $betterDiscordBdfdbPlugin -Destination $betterDiscordPluginDest
+    Copy-Item $betterDiscordSpellCheckPlugin -Destination $betterDiscordPluginDest
     Copy-Item $ghostwriterThemeConfig -Destination $ghostwriterThemeDest
     Copy-Item $powershellBannerCrowns -Destination $powershellConfigDest
     Copy-Item $powershellBannerKingKairos -Destination $powershellConfigDest
