@@ -186,7 +186,7 @@ if ($userInput.ToLower() -eq "y") {
     scoop bucket add extras
 
     # Install programs
-    scoop install ghostwriter hugo nano neofetch
+    scoop install ghostwriter hugo nano neofetch sysinternals
 
 
     # =============================================
