@@ -26,16 +26,20 @@ This is a script for setting up Windows to how I like it on a fresh install. The
 - This script is EXTREMELY loosely put together right now. Basically just enough to get it to work FOR ME.
   - If you'd like to use it, fork it, or anything else, please do; however, I am NOT responsible for anything breaking on your system.
 
-## To-Do List
+## Coming Soon :construction:
 
-- :construction: AutoHotkey
-- :white_check_mark: CaskaydiaCove Nerd Font Install
-- :white_check_mark: Chocolatey
-- :construction: Clean up script so that it's more organized and more formal
-- :construction: Clean up unneeded output
-- :white_check_mark: Configs
-- :white_check_mark: Information For User
-- :white_check_mark: PowerShell
-- :white_check_mark: Scoop
-- :white_check_mark: Windows 10 Compatibility
-- :white_check_mark: Windows 11 Compatibility
+- AutoHotkey
+- Complete refactoring of the code to clean it up
+  - The current code format was to get everything to work as intended, the cleanup will make it MUCH easier to look at, understand, modify, etc...
+- Clean up unneeded output
+
+## Completed :white_check_mark:
+
+- CaskaydiaCove Nerd Font Install
+- Chocolatey
+- Configs
+- Information For User
+- PowerShell
+- Scoop
+- Windows 10 Compatibility
+- Windows 11 Compatibility
