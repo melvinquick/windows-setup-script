@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This is a script for setting up Windows to how I like it on a fresh install. it b
+This is a script for setting up Windows to how I like it on a fresh install. The installed programs list is fluid and changes as I decide I want to use new things or no longer use old things. I also am constantly adding in / taking out new config/theme/plugin files for certain applications (ie. BetterDiscord themes/plugins).
 
 ## Instructions
 
@@ -38,4 +38,4 @@ This is a script for setting up Windows to how I like it on a fresh install. it 
 - :white_check_mark: PowerShell
 - :white_check_mark: Scoop
 - :white_check_mark: Windows 10 Compatibility
-- :construction: Windows 11 Compatibility
+- :white_check_mark: Windows 11 Compatibility
