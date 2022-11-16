@@ -244,37 +244,37 @@ if ($userInput.ToLower() -eq "y") {
     # Check for Alacritty Config Directory
     Write-Host "`nChecking for the Alacritty Config Directory and creating it if it doesn't exist..."
     if ((Test-Path -Path $alacrittyConfDest) -eq $false) {
-        New-Item -Path $alacrittyConfDest -ItemType Directory
+        New-Item -Path $alacrittyConfDest -ItemType Directory | Out-Null
     }
 
     # Check for BetterDiscord Plugin Directory
     Write-Host "Checking for the BetterDiscord Plugin Directory and creating it if it doesn't exist..."
     if ((Test-Path -Path $betterDiscordPluginDest) -eq $false) {
-        New-Item -Path $betterDiscordPluginDest -ItemType Directory
+        New-Item -Path $betterDiscordPluginDest -ItemType Directory | Out-Null
     }
 
     # Check for BetterDiscord Theme Directory
     Write-Host "Checking for the BetterDiscord Theme Directory and creating it if it doesn't exist..."
     if ((Test-Path -Path $betterDiscordThemeDest) -eq $false) {
-        New-Item -Path $betterDiscordThemeDest -ItemType Directory
+        New-Item -Path $betterDiscordThemeDest -ItemType Directory | Out-Null
     }
 
     # Check for Ghostwriter Config Directory
     Write-Host "Checking for the Ghostwriter Theme Directory and creating it if it doesn't exist..."
     if ((Test-Path -Path $ghostwriterThemeDest) -eq $false) {
-        New-Item -Path $ghostwriterThemeDest -ItemType Directory
+        New-Item -Path $ghostwriterThemeDest -ItemType Directory | Out-Null
     }
 
     # Check for PowerShell Config Directory
     Write-Host "Checking for the PowerShell Config Directory and creating it if it doesn't exist..."
     if ((Test-Path -Path $powershellConfDest) -eq $false) {
-        New-Item -Path $powershellConfDest -ItemType Directory
+        New-Item -Path $powershellConfDest -ItemType Directory | Out-Null
     }
 
     # Check for Winget Config Directory
     Write-Host "Checking for the Winget Config Directory and creating it if it doesn't exist..."
     if ((Test-Path -Path $wingetConfDest) -eq $false) {
-        New-Item -Path $wingetConfDest -ItemType Directory
+        New-Item -Path $wingetConfDest -ItemType Directory | Out-Null
     }
 
     # Move files to correct location
