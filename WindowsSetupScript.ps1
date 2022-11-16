@@ -162,7 +162,7 @@ if ($userInput.ToLower() -eq "y") {
 
     # Install Apps with Chocolatey
     foreach ($chocolateyApp in $chocolateyApps) {
-        choco install $chocolateyApp
+        choco install $chocolateyApp --yes --acceptlicense
     }
     #endRegion   
 
