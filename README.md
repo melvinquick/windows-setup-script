@@ -23,21 +23,18 @@ This is a script for setting up Windows to how I like it on a fresh install. The
 ## Notes
 
 - This script is in a usable state on Windows 10 and Windows 11.
-- This script is EXTREMELY loosely put together right now. Basically just enough to get it to work FOR ME.
-  - If you'd like to use it, fork it, or anything else, please do; however, I am NOT responsible for anything breaking on your system.
+  - This script just had a major refactoring and some things MAY or MAY NOT work.
+- If you'd like to use this script, fork it, or anything else, please do; however, I am NOT responsible for anything breaking on your system.
 
 ## Coming Soon :construction:
 
-- Complete refactoring of the code to clean it up
-  - The current code format was to get everything to work as intended, the cleanup will make it MUCH easier to look at, understand, modify, etc...
-    - The code cleanup process has started and once it's all complete AND tested I will make one big commit and push to update this repo
 - Clean up unneeded output
-  - This process has been started along with the aforementioned code cleanup... they basically go hand in hand
 
 ## Completed :white_check_mark:
 
 - CaskaydiaCove Nerd Font Install
 - Chocolatey
+- Code refactoring
 - Configs
 - Information For User
 - PowerShell
