@@ -243,37 +243,37 @@ if ($userInput.ToLower() -eq "y") {
 
     # Check for Alacritty Config Directory
     Write-Host "`nChecking for the Alacritty Config Directory and creating it if it doesn't exist..."
-    if (Test-Path -Path $alacrittyConfDest -eq $false) {
+    if ((Test-Path -Path $alacrittyConfDest) -eq $false) {
         New-Item -Path $alacrittyConfDest -ItemType Directory
     }
 
     # Check for BetterDiscord Plugin Directory
     Write-Host "Checking for the BetterDiscord Plugin Directory and creating it if it doesn't exist..."
-    if (Test-Path -Path $betterDiscordPluginDest -eq $false) {
+    if ((Test-Path -Path $betterDiscordPluginDest) -eq $false) {
         New-Item -Path $betterDiscordPluginDest -ItemType Directory
     }
 
     # Check for BetterDiscord Theme Directory
     Write-Host "Checking for the BetterDiscord Theme Directory and creating it if it doesn't exist..."
-    if (Test-Path -Path $betterDiscordThemeDest -eq $false) {
+    if ((Test-Path -Path $betterDiscordThemeDest) -eq $false) {
         New-Item -Path $betterDiscordThemeDest -ItemType Directory
     }
 
     # Check for Ghostwriter Config Directory
     Write-Host "Checking for the Ghostwriter Theme Directory and creating it if it doesn't exist..."
-    if (Test-Path -Path $ghostwriterThemeDest -eq $false) {
+    if ((Test-Path -Path $ghostwriterThemeDest) -eq $false) {
         New-Item -Path $ghostwriterThemeDest -ItemType Directory
     }
 
     # Check for PowerShell Config Directory
     Write-Host "Checking for the PowerShell Config Directory and creating it if it doesn't exist..."
-    if (Test-Path -Path $powershellConfDest -eq $false) {
+    if ((Test-Path -Path $powershellConfDest) -eq $false) {
         New-Item -Path $powershellConfDest -ItemType Directory
     }
 
     # Check for Winget Config Directory
     Write-Host "Checking for the Winget Config Directory and creating it if it doesn't exist..."
-    if (Test-Path -Path $wingetConfDest -eq $false) {
+    if ((Test-Path -Path $wingetConfDest) -eq $false) {
         New-Item -Path $wingetConfDest -ItemType Directory
     }
 
