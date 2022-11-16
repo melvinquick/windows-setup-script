@@ -307,7 +307,7 @@ if ($userInput.ToLower() -eq "y") {
 
     # Delete temp folder files that were created during the process of running this script
     Write-Host "Deleting temp files that were created in the process of running this script..."
-    Get-ChildItem $tempDir | Remove-Item -Force -Recurse
+    Get-ChildItem $tempDir | Remove-Item -Force -Recurse -ErrorAction SilentlyContinue
 
     # Clear the recycle bin
     Write-Host "Emptying the Recycle Bin..."
