@@ -13,7 +13,6 @@ This is a script for setting up Windows to how I like it on a fresh install. The
   - Set-Location -Path "WindowsSetupScript-main\WindowsSetupScript-main"
   - Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope Process
   - .\WindowsSetupScript.ps1
-- Change default font in PowerShell to CaskaydiaCove Nerd Font
 
 **Optional**
 
