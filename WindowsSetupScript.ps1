@@ -239,7 +239,7 @@ if ($userInput.ToLower() -eq "y") {
 
     # Git clone repo
     Write-Host "`nDownloading the config files from GitHub..."
-    git clone $confUrl
+    git clone $confUrl --quiet
 
     # Check for Alacritty Config Directory
     Write-Host "`nChecking for the Alacritty Config Directory and creating it if it doesn't exist..."
