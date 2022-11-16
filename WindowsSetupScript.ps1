@@ -321,9 +321,6 @@ if ($userInput.ToLower() -eq "y") {
     Write-Host "`n=============================================" -ForegroundColor Green
     Write-Host "NOTES" -ForegroundColor Green
     Write-Host "=============================================" -ForegroundColor Green
-
-    # Tell user to change install the font and make it their default font in PowerShell"
-    Write-Host "`nPlease change your default font in PowerShell to CaskaydiaCove Nerd Font."
     #endRegion
 }
 
