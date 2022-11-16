@@ -189,7 +189,7 @@ if ($userInput.ToLower() -eq "y") {
 
     # Install apps with Winget
     foreach ($wingetApp in $wingetApps) {
-        winget install -e --id $wingetApp
+        winget install -e --id $wingetApp --silent --accept-package-agreements --accept-source-agreements
     }
     #endRegion
 
