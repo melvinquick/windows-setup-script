@@ -64,7 +64,7 @@ function Install-Chocolatey {
     Write-Host "Chocolatey has been installed."
 }
 
-# Winget
+# Winget (I took this section from Chris Titus Tech's WinUtil located here: https://github.com/ChrisTitusTech/winutil/blob/main/winutil.ps1) and modified it VERY slightly, so shoutout to him!)
 function Install-Winget {
     # Gets the computer's information
     $ComputerInfo = Get-ComputerInfo
@@ -175,7 +175,7 @@ if ($userInput.ToLower() -eq "y") {
     Write-Host "WINGET" -ForegroundColor Green
     Write-Host "=============================================" -ForegroundColor Green
 
-    # Check if Winget is installed already and install it if not (I took this section from Chris Titus Tech's WinUtil located here: https://github.com/ChrisTitusTech/winutil/blob/main/winutil.ps1) and modified it VERY slightly, so shoutout to him!
+    # Check if Winget is installed already and install it if not
     Write-Host "`nChecking if Winget is Installed..."
 
     if (Test-Path ~\AppData\Local\Microsoft\WindowsApps\winget.exe) {
@@ -204,7 +204,7 @@ if ($userInput.ToLower() -eq "y") {
     Write-Host "=============================================" -ForegroundColor Green
 
     # Check if Scoop is installed already
-    Write-Host "`nChecking to see if Scoop is installed...`n"
+    Write-Host "`nChecking to see if Scoop is installed..."
 
     if (Test-Path -Path "$scoopDir\apps\scoop\current\bin\scoop.ps1") {
         Write-Host "Scoop is already installed."
@@ -314,15 +314,6 @@ if ($userInput.ToLower() -eq "y") {
     # Clear the recycle bin
     Write-Host "Emptying the Recycle Bin..."
     Clear-RecycleBin -Force
-    #endRegion
-
-    # =============================================
-    # NOTES
-    # =============================================
-    #region
-    Write-Host "`n=============================================" -ForegroundColor Green
-    Write-Host "NOTES" -ForegroundColor Green
-    Write-Host "=============================================" -ForegroundColor Green
     #endRegion
 }
 
