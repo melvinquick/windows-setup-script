@@ -50,6 +50,7 @@ $wingetConf = "$confDir\Winget\settings.json"
 
 # Miscellaneous
 $userInput = ""
+$sleepTime = 5
 #endRegion
 
 # =============================================
@@ -183,13 +184,14 @@ if ($userInput.ToLower() -eq "y") {
     }
     else {
         Install-Winget
+        Start-Sleep -Seconds $sleepTime
     }
 
     Write-Host "Installing programs via Winget..."
 
     # Install apps with Winget
     foreach ($wingetApp in $wingetApps) {
-        winget install -e --id $wingetApp --silent --accept-package-agreements
+        winget install -e --id $wingetApp --silent --accept-package-agreements --accept-source-agreements
     }
     #endRegion
 
