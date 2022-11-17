@@ -90,12 +90,12 @@ function Install-Winget {
     }
 
     elseif (((Get-ComputerInfo).WindowsVersion) -lt "1809") {
-        #Checks if Windows Version is too old for winget
+        # Checks if Windows Version is too old for winget
         Write-Host "Winget is not supported on this version of Windows (Pre-1809)."
     }
 
     else {
-        #Installing Winget from the Microsoft Store
+        # Installing Winget from the Microsoft Store
         Write-Host "Winget not found, installing it now..."
         Start-Process "ms-appinstaller:?source=https://aka.ms/getwinget"
         $nid = (Get-Process AppInstaller).Id
@@ -189,7 +189,7 @@ if ($userInput.ToLower() -eq "y") {
 
     # Install apps with Winget
     foreach ($wingetApp in $wingetApps) {
-        winget install -e --id $wingetApp --silent --accept-package-agreements --accept-source-agreements
+        winget install -e --id $wingetApp --silent --accept-package-agreements
     }
     #endRegion
 
