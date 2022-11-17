@@ -6,11 +6,10 @@ This is a script for setting up Windows to how I like it on a fresh install. The
 
 ## Instructions
 
-- Download the script as a zip file and save it wherever you want (your downloads folder should be fine)
+- Download the script as a zip file and save it to your downloads folder
 - Open PowerShell as an admin user and run these commands in this order:
-  - Set-Location -Path "~\Downloads"
-  - Expand-Archive WindowsSetupScript-main.zip
-  - Set-Location -Path "WindowsSetupScript-main\WindowsSetupScript-main"
+  - Expand-Archive ~\Downloads\WindowsSetupScript-main.zip
+  - Set-Location -Path "~\Downloads\WindowsSetupScript-main\WindowsSetupScript-main"
   - Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope Process
   - .\WindowsSetupScript.ps1
 
@@ -22,17 +21,18 @@ This is a script for setting up Windows to how I like it on a fresh install. The
 ## Notes
 
 - This script is in a usable state on Windows 10 and Windows 11.
-  - This script just had a major refactoring and some things MAY or MAY NOT work.
+- Once the script is running after the initial "Y/y" user input at the beginning, the user shouldn't need to do any more inputs.
 - If you'd like to use this script, fork it, or anything else, please do; however, I am NOT responsible for anything breaking on your system.
 
 ## Coming Soon :construction:
 
-- Clean up unneeded output
+- Nothing for now!
 
 ## Completed :white_check_mark:
 
 - CaskaydiaCove Nerd Font Install
 - Chocolatey
+- Clean up unneeded output
 - Code refactoring
 - Configs
 - Information For User
