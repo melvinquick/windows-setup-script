@@ -9,7 +9,7 @@ $confUrl = "https://github.com/cquick00/ConfigFiles.git"
 $chocolateyApps = @("cascadia-code-nerd-font")
 $wingetApps = @("7zip.7zip", "Alacritty.Alacritty", "Amazon.Games", "Lexikos.AutoHotkey", "Balena.Etcher", "Brave.Brave", "Discord.Discord", "ElectronicArts.EADesktop", "File-New-Project.EarTrumpet", "EpicGames.EpicGamesLauncher", "GIMP.GIMP", "Git.Git", "GitHub.GitHubDesktop", "Google.Drive", "Inkscape.Inkscape", "Joplin.Joplin", "KDE.Kdenlive", "GuinpinSoft.MakeMKV", "JeffreyPfau.mGBA", "Microsoft.VCRedist.2015+.x64", "Microsoft.VCRedist.2015+.x86", "dangeredwolf.ModernDeck", "Microsoft.PowerShell", "Python.Python.3", "Rustlang.Rustup", "Starship.Starship", "Valve.Steam", "Streamlabs.Streamlabs", "VideoLAN.VLC", "Microsoft.VisualStudioCode")
 $scoopBaseApps = @("7zip", "git")
-$scoopApps = @("ghostwriter", "hugo", "nano", "neofetch", "sysinternals")
+$scoopApps = @("ghostwriter", "hugo", "nano", "neofetch", "sysinternals", "tldr")
 $scoopBuckets = @("extras")
 
 # System/User Directories
