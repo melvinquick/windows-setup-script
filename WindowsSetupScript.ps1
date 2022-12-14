@@ -11,6 +11,7 @@ $wingetApps = @("7zip.7zip", "Alacritty.Alacritty", "Amazon.Games", "Lexikos.Aut
 $scoopApps = @("ghostwriter", "hugo", "nano", "neofetch", "sysinternals", "tldr")
 $scoopBaseApps = @("7zip", "git")
 $scoopBuckets = @("extras")
+$psModules = @("PSWindowsUpdate")
 
 # System/User Directories
 $appDataDir = "~\AppData"
@@ -292,6 +293,23 @@ if ($userInput.ToLower() -eq "y") {
     Copy-Item $powershellProfileConf -Destination $powershellConfDest
     Copy-Item $starshipConf -Destination $dotConfDir
     Copy-Item $wingetConf -Destination $wingetConfDest
+    #endRegion
+
+    # =============================================
+    # POWERSHELL MODULES
+    # =============================================
+    #region
+    Write-Host "`n=============================================" -ForegroundColor Green
+    Write-Host "PowerShell Modules" -ForegroundColor Green
+    Write-Host "=============================================" -ForegroundColor Green
+
+    # Set PSGallery as Trusted Repository
+    Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
+
+    # Install PowerShell Modules
+    foreach ($psModule in $psModules) {
+        Install-Module $psModule
+    }
     #endRegion
 
     # =============================================
