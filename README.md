@@ -37,6 +37,7 @@ This is a script for setting up Windows to how I like it on a fresh install. The
 - Configs
 - Information For User
 - PowerShell
+- PowerShell Modules
 - Scoop
 - Windows 10 Compatibility
 - Windows 11 Compatibility
