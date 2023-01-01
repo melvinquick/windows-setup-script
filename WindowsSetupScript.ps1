@@ -7,8 +7,8 @@ $confUrl = "https://github.com/cquick00/ConfigFiles.git"
 
 # App Install Lists
 $chocolateyApps = @("cascadia-code-nerd-font")
-$wingetApps = @("7zip.7zip", "Alacritty.Alacritty", "Amazon.Games", "Lexikos.AutoHotkey", "Balena.Etcher", "Brave.Brave", "Discord.Discord", "ElectronicArts.EADesktop", "File-New-Project.EarTrumpet", "EpicGames.EpicGamesLauncher", "GIMP.GIMP", "Git.Git", "GitHub.GitHubDesktop", "Google.Drive", "Inkscape.Inkscape", "Joplin.Joplin", "KDE.Kdenlive", "GuinpinSoft.MakeMKV", "JeffreyPfau.mGBA", "Microsoft.VCRedist.2015+.x64", "Microsoft.VCRedist.2015+.x86", "dangeredwolf.ModernDeck", "winget install -e --id OpenJS.NodeJS", "Microsoft.PowerShell", "Python.Python.3", "Rustlang.Rustup", "Starship.Starship", "Valve.Steam", "Streamlabs.Streamlabs", "VideoLAN.VLC", "Microsoft.VisualStudioCode")
-$scoopApps = @("ghostwriter", "hugo", "nano", "neofetch", "sysinternals", "tldr")
+$wingetApps = @("7zip.7zip", "Alacritty.Alacritty", "Amazon.Games", "Lexikos.AutoHotkey", "Balena.Etcher", "Brave.Brave", "Discord.Discord", "ElectronicArts.EADesktop", "File-New-Project.EarTrumpet", "EpicGames.EpicGamesLauncher", "GIMP.GIMP", "Git.Git", "GitHub.GitHubDesktop", "Google.Drive", "Inkscape.Inkscape", "Joplin.Joplin", "KDE.Kdenlive", "GuinpinSoft.MakeMKV", "JeffreyPfau.mGBA", "Microsoft.VCRedist.2015+.x64", "Microsoft.VCRedist.2015+.x86", "dangeredwolf.ModernDeck", "Microsoft.PowerShell", "Python.Python.3.11", "RevoUninstaller.RevoUninstaller", "NickeManarin.ScreenToGif", "Starship.Starship", "Valve.Steam", "VideoLAN.VLC", "Microsoft.VisualStudioCode")
+$scoopApps = @("ghostwriter", "nano", "neofetch", "sysinternals")
 $scoopBaseApps = @("7zip", "git")
 $scoopBuckets = @("extras")
 $psModules = @("PSWindowsUpdate")
@@ -25,13 +25,10 @@ $publicDesktopDir = "C:\Users\Public\Desktop"
 $tempDir = "~\AppData\Local\Temp"
 
 # App Directories
-$betterDiscordDir = "$appDataDir\BetterDiscord"
 $scoopDir = "~\scoop"
 
 # Config Destinations
 $alacrittyConfDest = "$appDataDir\Alacritty"
-$betterDiscordPluginDest = "$betterDiscordDir\plugins"
-$betterDiscordThemeDest = "$betterDiscordDir\themes"
 $ghostwriterThemeDest = "$scoopDir\apps\ghostwriter\current\data\themes"
 $powershellConfDest = "$documentDir\PowerShell"
 $wingetConfDest = "$localAppDataDir\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState"
@@ -39,9 +36,6 @@ $wingetConfDest = "$localAppDataDir\Packages\Microsoft.DesktopAppInstaller_8weky
 # Configs
 $alacrittyConf = "$confDir\Alacritty\alacritty.yml"
 $alacrittyDraculaThemeConf = "$confDir\Alacritty\dracula.yml"
-$betterDiscordBdfdbPlugin = "$confDir\BetterDiscord\Plugins\0BDFDB.plugin.js"
-$betterDiscordDraculaThemeConf = "$confDir\BetterDiscord\Themes\Dracula.theme.css"
-$betterDiscordSpellCheckPlugin = "$confDir\BetterDiscord\Plugins\SpellCheck.plugin.js"
 $ghostwriterThemeConf = "$confDir\Ghostwriter\Dracula.json"
 $powershellBannerKingKairos = "$confDir\PowerShell\kingkairos.txt"
 $powershellJsonConf = "$confDir\PowerShell\powershell.config.json"
@@ -250,18 +244,6 @@ if ($userInput.ToLower() -eq "y") {
         New-Item -Path $alacrittyConfDest -ItemType Directory | Out-Null
     }
 
-    # Check for BetterDiscord Plugin Directory
-    Write-Host "Checking for the BetterDiscord Plugin Directory and creating it if it doesn't exist..."
-    if ((Test-Path -Path $betterDiscordPluginDest) -eq $false) {
-        New-Item -Path $betterDiscordPluginDest -ItemType Directory | Out-Null
-    }
-
-    # Check for BetterDiscord Theme Directory
-    Write-Host "Checking for the BetterDiscord Theme Directory and creating it if it doesn't exist..."
-    if ((Test-Path -Path $betterDiscordThemeDest) -eq $false) {
-        New-Item -Path $betterDiscordThemeDest -ItemType Directory | Out-Null
-    }
-
     # Check for Ghostwriter Config Directory
     Write-Host "Checking for the Ghostwriter Theme Directory and creating it if it doesn't exist..."
     if ((Test-Path -Path $ghostwriterThemeDest) -eq $false) {
@@ -284,9 +266,6 @@ if ($userInput.ToLower() -eq "y") {
     Write-Host "`nMoving config files to their correct locations..."
     Copy-Item $alacrittyConf -Destination $alacrittyConfDest
     Copy-Item $alacrittyDraculaThemeConf -Destination $alacrittyConfDest
-    Copy-Item $betterDiscordBdfdbPlugin -Destination $betterDiscordPluginDest
-    Copy-Item $betterDiscordDraculaThemeConf -Destination $betterDiscordThemeDest
-    Copy-Item $betterDiscordSpellCheckPlugin -Destination $betterDiscordPluginDest
     Copy-Item $ghostwriterThemeConf -Destination $ghostwriterThemeDest
     Copy-Item $powershellBannerKingKairos -Destination $powershellConfDest
     Copy-Item $powershellJsonConf -Destination $powershellConfDest
