@@ -11,6 +11,7 @@ $wingetApps = @("7zip.7zip", "Alacritty.Alacritty", "Amazon.Games", "Lexikos.Aut
 $scoopApps = @("ghostwriter", "nano", "neofetch", "sysinternals", "ventoy")
 $scoopBaseApps = @("7zip", "git")
 $scoopBuckets = @("extras")
+$pipPackages = @("autopep8", "numpy", "pysimplegui")
 $psModules = @("PSWindowsUpdate")
 
 # System/User Directories
@@ -272,6 +273,20 @@ if ($userInput.ToLower() -eq "y") {
     Copy-Item $powershellProfileConf -Destination $powershellConfDest
     Copy-Item $starshipConf -Destination $dotConfDir
     Copy-Item $wingetConf -Destination $wingetConfDest
+    #endRegion
+
+    # =============================================
+    # PIP PACKAGES
+    # =============================================
+    #region
+    Write-Host "`n=============================================" -ForegroundColor Green
+    Write-Host "Pip Packages" -ForegroundColor Green
+    Write-Host "=============================================" -ForegroundColor Green
+
+    # Install Pip Packages
+    foreach ($pipPackage in $pipPackages) {
+        pip install $pipPackage
+    }
     #endRegion
 
     # =============================================
