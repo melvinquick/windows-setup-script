@@ -1,4 +1,4 @@
-# WindowsSetupScript
+# Windows Setup Script
 
 ## Purpose
 
