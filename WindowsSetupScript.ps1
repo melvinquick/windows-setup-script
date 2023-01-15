@@ -11,7 +11,7 @@ $wingetApps = @("7zip.7zip", "Alacritty.Alacritty", "Amazon.Games", "Lexikos.Aut
 $scoopApps = @("ghostwriter", "nano", "neofetch", "sysinternals", "ventoy")
 $scoopBaseApps = @("7zip", "git")
 $scoopBuckets = @("extras")
-$pipPackages = @("autopep8", "numpy", "pysimplegui")
+$pipPackages = @("autopep8", "auto-py-to-exe", "numpy", "pysimplegui", "wheel")
 $psModules = @("PSWindowsUpdate")
 
 # System/User Directories
