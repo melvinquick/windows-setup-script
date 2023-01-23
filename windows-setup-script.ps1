@@ -28,19 +28,21 @@ $scoop_dir = "~\scoop"
 
 # Config Destinations
 $alacritty_conf_dest = "$app_data_dir\Alacritty"
+$autohotkey_conf_dest = "$app_data_dir\Microsoft\Windows\Start Menu\Programs\Startup"
 $ghostwriter_theme_dest = "$scoop_dir\apps\ghostwriter\current\data\themes"
 $powershell_conf_dest = "$document_dir\PowerShell"
 $winget_conf_dest = "$local_app_data_dir\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState"
 
 # Configs
-$alacritty_conf = "$conf_dir\Alacritty\alacritty.yml"
-$alacritty_dracula_theme_conf = "$conf_dir\Alacritty\dracula.yml"
-$ghostwriter_theme_conf = "$conf_dir\Ghostwriter\Dracula.json"
-$powershell_banner = "$conf_dir\PowerShell\kingkairos.txt"
-$powershell_json_conf = "$conf_dir\PowerShell\powershell.config.json"
-$powershell_profile_conf = "$conf_dir\PowerShell\Microsoft.PowerShell_profile.ps1"
-$starship_conf = "$conf_dir\Starship\starship.toml"
-$winget_conf = "$conf_dir\Winget\settings.json"
+$alacritty_conf = "$conf_dir\alacritty\alacritty.yml"
+$alacritty_dracula_theme_conf = "$conf_dir\alacritty\dracula.yml"
+$autohotkey_conf = "$conf_dir\autohotkey\ahk-config.ahk"
+$ghostwriter_theme_conf = "$conf_dir\ghostwriter\dracula.json"
+$powershell_banner = "$conf_dir\powershell\kingkairos.txt"
+$powershell_json_conf = "$conf_dir\powershell\powershell.config.json"
+$powershell_profile_conf = "$conf_dir\powershell\Microsoft.PowerShell_profile.ps1"
+$starship_conf = "$conf_dir\starship\starship.toml"
+$winget_conf = "$conf_dir\winget\settings.json"
 
 # Miscellaneous
 $user_input = ""
@@ -217,6 +219,12 @@ if ($user_input.ToLower() -eq "y") {
         New-Item -Path $alacritty_conf_dest -ItemType Directory | Out-Null
     }
 
+    # Check for AutoHotkey Config Directory
+    Write-Host "`nChecking for the Autohotkey Config Directory and creating it if it doesn't exist..."
+    if ((Test-Path -Path $autohotkey_conf_dest) -eq $false) {
+        New-Item -Path $autohotkey_conf_dest -ItemType Directory | Out-Null
+    }
+
     # Check for Ghostwriter Config Directory
     Write-Host "Checking for the Ghostwriter Theme Directory and creating it if it doesn't exist..."
     if ((Test-Path -Path $ghostwriter_theme_dest) -eq $false) {
@@ -239,6 +247,7 @@ if ($user_input.ToLower() -eq "y") {
     Write-Host "`nMoving config files to their correct locations..."
     Copy-Item $alacritty_conf -Destination $alacritty_conf_dest
     Copy-Item $alacritty_dracula_theme_conf -Destination $alacritty_conf_dest
+    Copy-Item $autohotkey_conf -Destination $autohotkey_conf_dest
     Copy-Item $ghostwriter_theme_conf -Destination $ghostwriter_theme_dest
     Copy-Item $powershell_banner -Destination $powershell_conf_dest
     Copy-Item $powershell_json_conf -Destination $powershell_conf_dest
