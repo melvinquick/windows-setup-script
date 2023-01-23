@@ -219,12 +219,6 @@ if ($user_input.ToLower() -eq "y") {
         New-Item -Path $alacritty_conf_dest -ItemType Directory | Out-Null
     }
 
-    # Check for AutoHotkey Config Directory
-    Write-Host "`nChecking for the Autohotkey Config Directory and creating it if it doesn't exist..."
-    if ((Test-Path -Path $autohotkey_conf_dest) -eq $false) {
-        New-Item -Path $autohotkey_conf_dest -ItemType Directory | Out-Null
-    }
-
     # Check for Ghostwriter Config Directory
     Write-Host "Checking for the Ghostwriter Theme Directory and creating it if it doesn't exist..."
     if ((Test-Path -Path $ghostwriter_theme_dest) -eq $false) {
