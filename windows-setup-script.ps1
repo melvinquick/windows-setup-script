@@ -9,7 +9,7 @@ $winget_apps = @("7zip.7zip", "Alacritty.Alacritty", "Amazon.Games", "Lexikos.Au
 $scoop_apps = @("ghostwriter", "nano", "neofetch", "sysinternals")
 $scoop_base_apps = @("7zip", "git")
 $scoop_buckets = @("extras")
-$pip_packages = @("autopep8", "auto-py-to-exe", "numpy", "pysimplegui", "wheel")
+$pip_packages = @("autopep8", "auto-py-to-exe", "epy-reader", "numpy", "pysimplegui", "wheel")
 $ps_modules = @("PSWindowsUpdate")
 
 # System/User Directories
