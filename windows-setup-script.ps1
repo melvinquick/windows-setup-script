@@ -37,7 +37,6 @@ $alacritty_conf = "$conf_dir\alacritty\alacritty.yml"
 $alacritty_dracula_theme_conf = "$conf_dir\alacritty\dracula.yml"
 $autohotkey_conf = "$conf_dir\autohotkey\ahk-config.ahk"
 $ghostwriter_theme_conf = "$conf_dir\ghostwriter\dracula.json"
-$powershell_banner = "$conf_dir\powershell\kingkairos.txt"
 $powershell_json_conf = "$conf_dir\powershell\powershell.config.json"
 $powershell_profile_conf = "$conf_dir\powershell\Microsoft.PowerShell_profile.ps1"
 $starship_conf = "$conf_dir\starship\starship.toml"
@@ -242,7 +241,6 @@ if ($user_input.ToLower() -eq "y") {
     Copy-Item $alacritty_dracula_theme_conf -Destination $alacritty_conf_dest
     Copy-Item $autohotkey_conf -Destination $autohotkey_conf_dest
     Copy-Item $ghostwriter_theme_conf -Destination $ghostwriter_theme_dest
-    Copy-Item $powershell_banner -Destination $powershell_conf_dest
     Copy-Item $powershell_json_conf -Destination $powershell_conf_dest
     Copy-Item $powershell_profile_conf -Destination $powershell_conf_dest
     Copy-Item $starship_conf -Destination $dot_conf_dir
