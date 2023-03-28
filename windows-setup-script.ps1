@@ -5,7 +5,7 @@ $conf_url = "https://github.com/cquick00/ConfigFiles.git"
 
 # App Install Lists
 $chocolatey_apps = @("cascadia-code-nerd-font")
-$winget_apps = @("7zip.7zip", "Alacritty.Alacritty", "Amazon.Games", "AutoHotkey.AutoHotkey", "Balena.Etcher", "BleachBit.BleachBit", "calibre.calibre", "Discord.Discord", "ElectronicArts.EADesktop", "File-New-Project.EarTrumpet", "EpicGames.EpicGamesLauncher", "GIMP.GIMP", "Git.Git", "GitHub.GitHubDesktop", "Google.Drive", "Inkscape.Inkscape", "KDE.Kdenlive", "GuinpinSoft.MakeMKV", "JeffreyPfau.mGBA", "Microsoft.VCRedist.2015+.x64", "Microsoft.VCRedist.2015+.x86", "Mozilla.Firefox", "Microsoft.PowerShell", "Python.Python.3.12", "qBittorrent.qBittorrent", "RevoUninstaller.RevoUninstaller", "NickeManarin.ScreenToGif", "Starship.Starship", "Valve.Steam", "Ubisoft.Connect", "VideoLAN.VLC", "Microsoft.VisualStudioCode")
+$winget_apps = @("7zip.7zip", "Alacritty.Alacritty", "Amazon.Games", "AutoHotkey.AutoHotkey", "BleachBit.BleachBit", "calibre.calibre", "Discord.Discord", "ElectronicArts.EADesktop", "File-New-Project.EarTrumpet", "EpicGames.EpicGamesLauncher", "GIMP.GIMP", "Git.Git", "GitHub.GitHubDesktop", "Google.Drive", "Inkscape.Inkscape", "KDE.Kdenlive", "GuinpinSoft.MakeMKV", "JeffreyPfau.mGBA", "Microsoft.VCRedist.2015+.x64", "Microsoft.VCRedist.2015+.x86", "Mozilla.Firefox", "Microsoft.PowerShell", "Python.Python.3.12", "qBittorrent.qBittorrent", "RevoUninstaller.RevoUninstaller", "NickeManarin.ScreenToGif", "Starship.Starship", "Valve.Steam", "Ubisoft.Connect", "VideoLAN.VLC", "Microsoft.VisualStudioCode")
 $scoop_apps = @("android-messages", "ghostwriter", "nano", "neofetch", "sysinternals")
 $scoop_base_apps = @("7zip", "git")
 $scoop_buckets = @("extras")
