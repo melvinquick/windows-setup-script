@@ -5,11 +5,10 @@ $conf_url = "https://github.com/cquick00/ConfigFiles.git"
 
 # App Install Lists
 $chocolatey_apps = @("cascadia-code-nerd-font")
-$winget_apps = @("7zip.7zip", "Alacritty.Alacritty", "Amazon.Games", "BleachBit.BleachBit", "calibre.calibre", "Discord.Discord", "ElectronicArts.EADesktop", "File-New-Project.EarTrumpet", "EpicGames.EpicGamesLauncher", "GIMP.GIMP", "Git.Git", "GitHub.GitHubDesktop", "Google.Drive", "Inkscape.Inkscape", "KDE.Kdenlive", "GuinpinSoft.MakeMKV", "JeffreyPfau.mGBA", "Microsoft.VCRedist.2015+.x64", "Microsoft.VCRedist.2015+.x86", "Mozilla.Firefox", "Microsoft.PowerShell", "Python.Python.3.12", "qBittorrent.qBittorrent", "RevoUninstaller.RevoUninstaller", "NickeManarin.ScreenToGif", "Starship.Starship", "Valve.Steam", "Ubisoft.Connect", "VideoLAN.VLC", "Microsoft.VisualStudioCode")
+$winget_apps = @("7zip.7zip", "Alacritty.Alacritty", "Amazon.Games", "BleachBit.BleachBit", "Discord.Discord", "ElectronicArts.EADesktop", "File-New-Project.EarTrumpet", "Elgato.4KCaptureUtility", "EpicGames.EpicGamesLauncher", "Epilogue.EpilogueOperator", "GIMP.GIMP", "Git.Git", "GitHub.GitHubDesktop", "Google.Drive", "Inkscape.Inkscape", "KDE.Kdenlive", "GuinpinSoft.MakeMKV", "JeffreyPfau.mGBA", "Microsoft.VCRedist.2015+.x64", "Microsoft.VCRedist.2015+.x86", "Mozilla.Firefox", "mRemoteNG.mRemoteNG", "Microsoft.PowerShell", "Python.Python.3.12", "qBittorrent.qBittorrent", "RevoUninstaller.RevoUninstaller", "NickeManarin.ScreenToGif", "Starship.Starship", "Valve.Steam", "Ubisoft.Connect", "VideoLAN.VLC", "NexusMods.Vortex", "Microsoft.VisualStudioCode", "WinSCP.WinSCP")
 $scoop_apps = @("android-messages", "ghostwriter", "nano", "neofetch", "sysinternals")
 $scoop_base_apps = @("7zip", "git")
 $scoop_buckets = @("extras")
-$pip_packages = @("autopep8", "auto-py-to-exe", "epy-reader", "numpy", "pysimplegui", "wheel")
 $ps_modules = @("PSWindowsUpdate")
 
 # System/User Directories
@@ -248,16 +247,6 @@ if ($user_input.ToLower() -eq "y") {
     Copy-Item $powershell_profile_conf -Destination $powershell_conf_dest
     Copy-Item $starship_conf -Destination $dot_conf_dir
     Copy-Item $winget_conf -Destination $winget_conf_dest
-    #endRegion
-
-    # --- Pip Packages --- #
-    #region
-    Write-Host "`n# --- Pip Packages --- #" -ForegroundColor Green
-
-    # Install Pip Packages
-    foreach ($pipPackage in $pip_packages) {
-        pip install $pipPackage
-    }
     #endRegion
 
     # --- PowerShell Modules --- #
