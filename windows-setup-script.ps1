@@ -9,7 +9,7 @@ $winget_apps = @("7zip.7zip", "Alacritty.Alacritty", "Amazon.Games", "BleachBit.
 $scoop_apps = @("android-messages", "ghostwriter", "nano", "neofetch", "sysinternals")
 $scoop_base_apps = @("7zip", "git")
 $scoop_buckets = @("extras")
-$ps_modules = @("PSWindowsUpdate")
+$ps_modules = @("PSWindowsUpdate", "PSWordCloud")
 
 # System/User Directories
 $app_data_dir = "~\AppData"
