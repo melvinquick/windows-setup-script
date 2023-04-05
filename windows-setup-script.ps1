@@ -1,46 +1,19 @@
 # --- Variables --- #
 #region
 # URLs
-$conf_url = "https://github.com/cquick00/ConfigFiles.git"
+$conf_url = "https://github.com/cquick00/windows-config-files.git"
 
 # App Install Lists
 $chocolatey_apps = @("cascadia-code-nerd-font")
-$winget_apps = @("7zip.7zip", "Alacritty.Alacritty", "Amazon.Games", "BleachBit.BleachBit", "Discord.Discord", "ElectronicArts.EADesktop", "File-New-Project.EarTrumpet", "Elgato.4KCaptureUtility", "EpicGames.EpicGamesLauncher", "Epilogue.EpilogueOperator", "GIMP.GIMP", "Git.Git", "GitHub.GitHubDesktop", "Google.Drive", "Inkscape.Inkscape", "KDE.Kdenlive", "GuinpinSoft.MakeMKV", "JeffreyPfau.mGBA", "Microsoft.VCRedist.2015+.x64", "Microsoft.VCRedist.2015+.x86", "Mozilla.Firefox", "mRemoteNG.mRemoteNG", "Microsoft.PowerShell", "Python.Python.3.11", "qBittorrent.qBittorrent", "RevoUninstaller.RevoUninstaller", "NickeManarin.ScreenToGif", "Starship.Starship", "Valve.Steam", "Ubisoft.Connect", "VideoLAN.VLC", "NexusMods.Vortex", "Microsoft.VisualStudioCode", "WinSCP.WinSCP")
-$scoop_apps = @("android-messages", "ghostwriter", "nano", "neofetch", "sysinternals")
-$scoop_base_apps = @("7zip", "git")
-$scoop_buckets = @("extras")
 $ps_modules = @("PSWindowsUpdate", "PSWordCloud")
+$scoop_apps_base = @("7zip", "git")
+$scoop_apps_main = @("android-messages", "ghostwriter", "nano", "neofetch", "sysinternals")
+$scoop_buckets = @("extras")
+$winget_apps = @("7zip.7zip", "Alacritty.Alacritty", "Amazon.Games", "BleachBit.BleachBit", "Discord.Discord", "ElectronicArts.EADesktop", "File-New-Project.EarTrumpet", "Elgato.4KCaptureUtility", "EpicGames.EpicGamesLauncher", "Epilogue.EpilogueOperator", "GIMP.GIMP", "Git.Git", "GitHub.GitHubDesktop", "Google.Drive", "Inkscape.Inkscape", "KDE.Kdenlive", "GuinpinSoft.MakeMKV", "JeffreyPfau.mGBA", "Microsoft.VCRedist.2015+.x64", "Microsoft.VCRedist.2015+.x86", "Mozilla.Firefox", "mRemoteNG.mRemoteNG", "Microsoft.PowerShell", "Python.Python.3.11", "qBittorrent.qBittorrent", "RevoUninstaller.RevoUninstaller", "NickeManarin.ScreenToGif", "Starship.Starship", "Valve.Steam", "Ubisoft.Connect", "VideoLAN.VLC", "NexusMods.Vortex", "Microsoft.VisualStudioCode", "WinSCP.WinSCP")
 
 # System/User Directories
-$app_data_dir = "~\AppData"
-$conf_dir = "~\Downloads\ConfigFiles"
-$desktop_dir = "~\Desktop"
-$document_dir = "~\Documents"
-$dot_conf_dir = "~\.config"
-$download_dir = "~\Downloads"
-$local_app_data_dir = "~\AppData\Local"
-$public_desktop_dir = "C:\Users\Public\Desktop"
-$temp_dir = "~\AppData\Local\Temp"
-
-# App Directories
-$scoop_dir = "~\scoop"
-
-# Config Destinations
-$alacritty_conf_dest = "$app_data_dir\Alacritty"
-$autohotkey_conf_dest = "$app_data_dir\Microsoft\Windows\Start Menu\Programs\Startup"
-$ghostwriter_theme_dest = "$scoop_dir\apps\ghostwriter\current\data\themes"
-$powershell_conf_dest = "$document_dir\PowerShell"
-$winget_conf_dest = "$local_app_data_dir\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState"
-
-# Configs
-$alacritty_conf = "$conf_dir\alacritty\alacritty.yml"
-$alacritty_dracula_theme_conf = "$conf_dir\alacritty\dracula.yml"
-$autohotkey_conf = "$conf_dir\autohotkey\ahk-config.ahk"
-$ghostwriter_theme_conf = "$conf_dir\ghostwriter\dracula.json"
-$powershell_json_conf = "$conf_dir\powershell\powershell.config.json"
-$powershell_profile_conf = "$conf_dir\powershell\Microsoft.PowerShell_profile.ps1"
-$starship_conf = "$conf_dir\starship\starship.toml"
-$winget_conf = "$conf_dir\winget\settings.json"
+$conf_dir = "$HOME\Downloads\windows-config-files\home"
+$working_dir = "$HOME\Downloads"
 
 # Miscellaneous
 $user_input = ""
@@ -123,7 +96,7 @@ if ($user_input.ToLower() -eq "y") {
 
     # Set working directory for script
     Write-Host "`nSetting the working directory for the script."
-    Set-Location $download_dir
+    Set-Location -Path $working_dir
 
     # --- Chocolatey --- #
     #region  
@@ -178,7 +151,7 @@ if ($user_input.ToLower() -eq "y") {
     # Check if Scoop is installed already
     Write-Host "`nChecking to see if Scoop is installed..."
 
-    if (Test-Path -Path "$scoop_dir\apps\scoop\current\bin\scoop.ps1") {
+    if (Test-Path -Path "$HOME\scoop\apps\scoop\current\bin\scoop.ps1") {
         Write-Host "Scoop is already installed."
     }
 
@@ -188,7 +161,7 @@ if ($user_input.ToLower() -eq "y") {
     }
 
     # Install base apps for Scoop
-    foreach ($scoop_base_app in $scoop_base_apps) {
+    foreach ($scoop_app in $scoop_apps_base) {
         scoop install $scoop_base_app
     }
 
@@ -198,7 +171,7 @@ if ($user_input.ToLower() -eq "y") {
     }
 
     # Install apps with Scoop
-    foreach ($scoop_app in $scoop_apps) {
+    foreach ($scoop_app in $scoop_apps_main) {
         scoop install $scoop_app
     }
     #endRegion
@@ -211,45 +184,26 @@ if ($user_input.ToLower() -eq "y") {
     Write-Host "`nDownloading the config files from GitHub..."
     git clone $conf_url --quiet
 
-    # Check for Alacritty Config Directory
-    Write-Host "`nChecking for the Alacritty Config Directory and creating it if it doesn't exist..."
-    if ((Test-Path -Path $alacritty_conf_dest) -eq $false) {
-        New-Item -Path $alacritty_conf_dest -ItemType Directory | Out-Null
-    }
+    # Copy all configs to their correct locations
+    Write-Host "`nMoving all config files to their correct locations..."
 
-    # Check for Ghostwriter Config Directory
-    Write-Host "Checking for the Ghostwriter Theme Directory and creating it if it doesn't exist..."
-    if ((Test-Path -Path $ghostwriter_theme_dest) -eq $false) {
-        New-Item -Path $ghostwriter_theme_dest -ItemType Directory | Out-Null
-    }
+    # Set location to the correct directory and get the file paths for each config
+    Set-Location -Path $conf_dir
+    $base_path = Resolve-Path .
+    $file_paths = Get-ChildItem -LiteralPath $conf_dir -File -Recurse | ForEach-Object { (Join-Path ((Split-Path $_.FullName -Parent) -replace "^\\","") $_.Name) -replace ("^{0}\\?" -f [regex]::Escape($base_path)), "" }
 
-    # Check for PowerShell Config Directory
-    Write-Host "Checking for the PowerShell Config Directory and creating it if it doesn't exist..."
-    if ((Test-Path -Path $powershell_conf_dest) -eq $false) {
-        New-Item -Path $powershell_conf_dest -ItemType Directory | Out-Null
+    # Move each config to the correct location
+    foreach($file in $file_paths){
+        Copy-Item -Path $file -Destination $HOME\$file -Force
     }
-
-    # Check for Winget Config Directory
-    Write-Host "Checking for the Winget Config Directory and creating it if it doesn't exist..."
-    if ((Test-Path -Path $winget_conf_dest) -eq $false) {
-        New-Item -Path $winget_conf_dest -ItemType Directory | Out-Null
-    }
-
-    # Move files to correct location
-    Write-Host "`nMoving config files to their correct locations..."
-    Copy-Item $alacritty_conf -Destination $alacritty_conf_dest
-    Copy-Item $alacritty_dracula_theme_conf -Destination $alacritty_conf_dest
-    Copy-Item $autohotkey_conf -Destination $autohotkey_conf_dest
-    Copy-Item $ghostwriter_theme_conf -Destination $ghostwriter_theme_dest
-    Copy-Item $powershell_json_conf -Destination $powershell_conf_dest
-    Copy-Item $powershell_profile_conf -Destination $powershell_conf_dest
-    Copy-Item $starship_conf -Destination $dot_conf_dir
-    Copy-Item $winget_conf -Destination $winget_conf_dest
     #endRegion
 
     # --- PowerShell Modules --- #
     #region
     Write-Host "`n# --- PowerShell Modules --- #" -ForegroundColor Green
+
+    # Set the directory back to the working directory
+    Set-Location -Path $working_dir
 
     # Set PSGallery as Trusted Repository
     Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
@@ -264,14 +218,11 @@ if ($user_input.ToLower() -eq "y") {
     #region
     Write-Host "`n# --- Cleanup --- #" -ForegroundColor Green
 
-    # Delete desktop icons
-    Write-Host "`nDeleting Desktop Icons that were created from program installs..."
-    Get-ChildItem $desktop_dir | Remove-Item -Force -Recurse
-    Get-ChildItem $public_desktop_dir | Remove-Item -Force -Recurse
-
-    # Delete temp folder files that were created during the process of running this script
-    Write-Host "Deleting temp files that were created in the process of running this script..."
-    Get-ChildItem $temp_dir | Remove-Item -Force -Recurse -ErrorAction SilentlyContinue
+    # Delete desktop icons and temp folder files that were created during the process of running this script
+    Write-Host "`nDeleting Desktop Icons and Temp Files that were created from program installs..."
+    Get-ChildItem -Path "$HOME\Desktop" | Remove-Item -Force -Recurse
+    Get-ChildItem -Path "C:\Users\Public\Desktop" | Remove-Item -Force -Recurse
+    Get-ChildItem -Path "$HOME\AppData\Local\Temp" | Remove-Item -Force -Recurse -ErrorAction SilentlyContinue    
 
     # Clear the recycle bin
     Write-Host "Emptying the Recycle Bin..."
