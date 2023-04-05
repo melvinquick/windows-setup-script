@@ -9,9 +9,9 @@ This is a script for setting up Windows to how I like it on a fresh install. The
 - Download the script as a zip file and save it to your downloads folder
 - Open PowerShell as an admin user and run these commands in this order:
   - Expand-Archive ~\Downloads\windows-setup-script-main.zip
-  - Set-Location -Path "~\Downloads\WindowsSetupScript-main\WindowsSetupScript-main"
+  - Set-Location -Path "~\Downloads\windows-setup-script-main\windows-setup-script-main"
   - Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope Process
-  - .\WindowsSetupScript.ps1
+  - .\windows-setup-script.ps1
 
 ### Optional
 
