@@ -190,10 +190,10 @@ if ($user_input.ToLower() -eq "y") {
     # Set location to the correct directory and get the file paths for each config
     Set-Location -Path $conf_dir
     $base_path = Resolve-Path .
-    $file_paths = Get-ChildItem -LiteralPath $conf_dir -File -Recurse | ForEach-Object { (Join-Path ((Split-Path $_.FullName -Parent) -replace "^\\","") $_.Name) -replace ("^{0}\\?" -f [regex]::Escape($base_path)), "" }
+    $file_paths = Get-ChildItem -LiteralPath $conf_dir -File -Recurse | ForEach-Object { (Join-Path ((Split-Path $_.FullName -Parent) -replace "^\\", "") $_.Name) -replace ("^{0}\\?" -f [regex]::Escape($base_path)), "" }
 
     # Move each config to the correct location
-    foreach($file in $file_paths){
+    foreach ($file in $file_paths) {
         $destination = "$HOME\$file"
         if ((Test-Path -Path $destination) -eq $false) {
             New-Item -Path $destination -Force
