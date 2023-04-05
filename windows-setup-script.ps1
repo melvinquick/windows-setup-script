@@ -194,7 +194,11 @@ if ($user_input.ToLower() -eq "y") {
 
     # Move each config to the correct location
     foreach($file in $file_paths){
-        Copy-Item -Path $file -Destination $HOME\$file -Force
+        $destination = "$HOME\$file"
+        if ((Test-Path -Path $destination) -eq $false) {
+            New-Item -Path $destination -Force
+        }
+        Copy-Item -Path $file -Destination $destination -Force
     }
     #endRegion
 
