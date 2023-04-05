@@ -15,7 +15,6 @@ This is a script for setting up Windows to how I like it on a fresh install. The
 
 ### Optional
 
-- Once the script is done, you can then delete anything remaining in your Downloads folder as it's no longer needed.
 - A restart is recommended, but not necessary.
 
 ## Notes
