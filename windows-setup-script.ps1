@@ -224,9 +224,10 @@ if ($user_input.ToLower() -eq "y") {
 
     # Delete desktop icons and temp folder files that were created during the process of running this script
     Write-Host "`nDeleting Desktop Icons and Temp Files that were created from program installs..."
-    Get-ChildItem -Path "$HOME\Desktop" | Remove-Item -Force -Recurse
-    Get-ChildItem -Path "C:\Users\Public\Desktop" | Remove-Item -Force -Recurse
-    Get-ChildItem -Path "$HOME\AppData\Local\Temp" | Remove-Item -Force -Recurse -ErrorAction SilentlyContinue    
+    Get-ChildItem -Path "$HOME\Desktop" | Remove-Item -Force -Recurse -ErrorAction SilentlyContinue
+    Get-ChildItem -Path "C:\Users\Public\Desktop" | Remove-Item -Force -Recurse -ErrorAction SilentlyContinue
+    Get-ChildItem -Path "$HOME\AppData\Local\Temp" | Remove-Item -Force -Recurse -ErrorAction SilentlyContinue
+    Get-ChildItem -Path $working_dir | Remove-Item -Force -Recurse -ErrorAction SilentlyContinue
 
     # Clear the recycle bin
     Write-Host "Emptying the Recycle Bin..."
