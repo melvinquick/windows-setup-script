@@ -21,7 +21,7 @@ This is a script for setting up Windows to how I like it on a fresh install. The
 ## Notes
 
 - This script is in a usable state on Windows 10 and Windows 11.
-- Once the script is running after the initial "Y/y" user input at the beginning, the user shouldn't need to do any more inputs.
+- Once the script is running after the initial "Y/y" user input at the beginning, the user should only need to accept the question in the PowerShell Module Section.
 - If you'd like to use this script, fork it, or anything else, please do; however, I am NOT responsible for anything breaking on your system.
 
 ## Coming Soon :construction:
