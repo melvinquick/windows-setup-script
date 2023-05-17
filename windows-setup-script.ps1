@@ -4,12 +4,11 @@
 $conf_url = "https://github.com/cquick00/windows-config-files.git"
 
 # App Install Lists
-$chocolatey_apps = @("cascadia-code-nerd-font")
 $ps_modules = @("PSWindowsUpdate", "PSWordCloud")
-$scoop_apps_base = @("7zip", "git")
-$scoop_apps_main = @("android-messages", "nano", "neofetch", "sysinternals")
-$scoop_buckets = @("extras")
-$winget_apps = @("7zip.7zip", "Alacritty.Alacritty", "angryziber.AngryIPScanner", "BleachBit.BleachBit", "BlenderFoundation.Blender", "SaeraSoft.CaesiumImageCompressor", "Discord.Discord", "File-New-Project.EarTrumpet", "Elgato.4KCaptureUtility", "EpicGames.EpicGamesLauncher", "Epilogue.EpilogueOperator", "GIMP.GIMP", "Git.Git", "GitHub.GitHubDesktop", "Google.Drive", "Inkscape.Inkscape", "KDE.Kdenlive", "GuinpinSoft.MakeMKV", "JeffreyPfau.mGBA", "Microsoft.DirectX", "Microsoft.VCRedist.2015+.x64", "Microsoft.VCRedist.2015+.x86", "Mozilla.Firefox", "mRemoteNG.mRemoteNG", "OpenJS.NodeJS", 'OBSProject.OBSStudio', "Microsoft.PowerShell", "Python.Python.3.11", "qBittorrent.qBittorrent", "RevoUninstaller.RevoUninstaller", "Front.scrcpy+", "NickeManarin.ScreenToGif", "Starship.Starship", "Valve.Steam", "Telegram.TelegramDesktop", "VideoLAN.VLC", "NexusMods.Vortex", "Microsoft.VisualStudioCode", "WinSCP.WinSCP", "WiresharkFoundation.Wireshark", "Zoom.Zoom")
+$scoop_apps_base = @("main/7zip", "main/git")
+$scoop_apps_main = @("extras/alacritty", "extras/android-messages", "extras/ipscan", "extras/autohotkey", "extras/bleachbit", "extras/blender", "extras/caesium-image-compressor", "extras/discord", "extras/eartrumpet", "games/epic-games-launcher", "nerd-fonts/FiraCode-NF", "extras/gimp", "extras/github", "extras/inkscape", "extras/inno-setup", "extras/kdenlive", "extras/makemkv", "games/mgba", "extras/firefox", "extras/mremoteng", "main/nano", "main/neofetch", "main/nodejs", "extras/obs-studio",  "main/poetry", "main/python", "extras/qbittorrent-enhanced", "extras/revouninstaller", "main/scrcpy", "extras/screentogif", "main/starship", "versions/steam", "extras/sysinternals", "extras/telegram", "extras/ventoy", "extras/vlc", "extras/vortex", "extras/vscode", "extras/winscp", "extras/wireshark", "extras/zoom")
+$scoop_buckets = @("extras", "games", "nerd-fonts", "versions")
+$winget_apps = @("Elgato.4KCaptureUtility", "Epilogue.EpilogueOperator", "Google.Drive", "Microsoft.DirectX", "Microsoft.VCRedist.2015+.x64", "Microsoft.VCRedist.2015+.x86", "Microsoft.PowerShell")
 
 # System/User Directories
 $conf_dir = "$HOME\Downloads\windows-config-files\home"
@@ -113,11 +112,6 @@ if ($user_input.ToLower() -eq "y") {
         Write-Host "Chocolatey was not installed. Downloading and installing now..."
         Install-Chocolatey
     }
-
-    # Install Apps with Chocolatey
-    foreach ($chocolatey_app in $chocolatey_apps) {
-        choco install $chocolatey_app --yes --acceptlicense
-    }
     #endRegion   
 
     # --- Winget --- #
@@ -128,10 +122,10 @@ if ($user_input.ToLower() -eq "y") {
     Write-Host "`nChecking if Winget is Installed..."
 
     if (Test-Path ~\AppData\Local\Microsoft\WindowsApps\winget.exe) {
-        # Checks if Winget executable exists and if the Windows Version is 1809 or higher
-        Write-Host "Winget Already Installed."
+        Write-Host "Winget is already Installed."
     }
     else {
+        Write-Host "Winget was not installed. Downloading and installing now..."
         Install-Winget
         Start-Sleep -Seconds $sleep_time
     }
