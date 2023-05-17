@@ -7,7 +7,7 @@ $conf_url = "https://github.com/cquick00/windows-config-files.git"
 $chocolatey_apps = @("cascadia-code-nerd-font")
 $ps_modules = @("PSWindowsUpdate", "PSWordCloud")
 $scoop_apps_base = @("7zip", "git")
-$scoop_apps_main = @("android-messages", "ghostwriter", "nano", "neofetch", "sysinternals")
+$scoop_apps_main = @("android-messages", "nano", "neofetch", "sysinternals")
 $scoop_buckets = @("extras")
 $winget_apps = @("7zip.7zip", "Alacritty.Alacritty", "angryziber.AngryIPScanner", "BleachBit.BleachBit", "BlenderFoundation.Blender", "SaeraSoft.CaesiumImageCompressor", "Discord.Discord", "File-New-Project.EarTrumpet", "Elgato.4KCaptureUtility", "EpicGames.EpicGamesLauncher", "Epilogue.EpilogueOperator", "GIMP.GIMP", "Git.Git", "GitHub.GitHubDesktop", "Google.Drive", "Inkscape.Inkscape", "KDE.Kdenlive", "GuinpinSoft.MakeMKV", "JeffreyPfau.mGBA", "Microsoft.DirectX", "Microsoft.VCRedist.2015+.x64", "Microsoft.VCRedist.2015+.x86", "Mozilla.Firefox", "mRemoteNG.mRemoteNG", "OpenJS.NodeJS", 'OBSProject.OBSStudio', "Microsoft.PowerShell", "Python.Python.3.11", "qBittorrent.qBittorrent", "RevoUninstaller.RevoUninstaller", "Front.scrcpy+", "NickeManarin.ScreenToGif", "Starship.Starship", "Valve.Steam", "Telegram.TelegramDesktop", "VideoLAN.VLC", "NexusMods.Vortex", "Microsoft.VisualStudioCode", "WinSCP.WinSCP", "WiresharkFoundation.Wireshark", "Zoom.Zoom")
 
