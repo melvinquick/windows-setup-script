@@ -9,9 +9,10 @@ This is a script for setting up Windows to how I like it on a fresh install. The
 - To run, open PowerShell as an admin user and copy/paste this code block into it:
 
   ```
-  Invoke-WebRequest -Uri https://raw.githubusercontent.com/cquick00/windows-setup-script/main/windows-setup-script.ps1 -OutFile $HOME\Downloads\windows-setup-script.ps1
-  Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope Process
-  Set-Location -Path $HOME\Downloads; .\windows-setup-script.ps1
+  Invoke-WebRequest -Uri https://raw.githubusercontent.com/cquick00/windows-setup-script/main/windows-setup-script.ps1 -OutFile $HOME\Downloads\windows-setup-script.ps1;
+  Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope Process;
+  Set-Location -Path $HOME\Downloads;
+  .\windows-setup-script.ps1
   ```
 
 ### Optional
