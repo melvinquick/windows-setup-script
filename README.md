@@ -6,14 +6,12 @@ This is a script for setting up Windows to how I like it on a fresh install. The
 
 ## Instructions
 
-- Download the script as a zip file and save it to your downloads folder
-- Open PowerShell as an admin user and copy/paste this code block into it:
+- To run, open PowerShell as an admin user and copy/paste this code block into it:
 
   ```
-  Expand-Archive -Path $HOME\Downloads\windows-setup-script-main.zip -DestinationPath $HOME\Downloads
-  Set-Location -Path "$HOME\Downloads\windows-setup-script-main"
+  Invoke-WebRequest -Uri https://raw.githubusercontent.com/cquick00/windows-setup-script/main/windows-setup-script.ps1 -OutFile $HOME\Downloads\windows-setup-script.ps1
   Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope Process
-  .\windows-setup-script.ps1
+  .\$HOME\Downloadswindows-setup-script.ps1
   ```
 
 ### Optional
