@@ -7,7 +7,7 @@ This is a script for setting up Windows to how I like it on a fresh install. The
 ## Instructions
 
 - Download the script as a zip file and save it to your downloads folder
-- Open PowerShell as an admin user and run these commands in this order:
+- Open PowerShell as an admin user and copy/paste this code block into it:
 
   ```
   Expand-Archive -Path $HOME\Downloads\windows-setup-script-main.zip -DestinationPath $HOME\Downloads
