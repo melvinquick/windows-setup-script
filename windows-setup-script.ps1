@@ -7,7 +7,7 @@ $conf_url = "https://github.com/cquick00/windows-config-files.git"
 $ps_modules = @("PSWindowsUpdate", "PSWordCloud")
 $scoop_apps_base = @("main/7zip", "main/git")
 $scoop_apps_main = @("nerd-fonts/FiraCode-NF", "extras/sysinternals")
-$scoop_buckets = @("extras", "games", "java/temurin-jdk", "nerd-fonts", "versions")
+$scoop_buckets = @("extras", "nerd-fonts")
 $winget_apps = @("Elgato.4KCaptureUtility", "Epilogue.EpilogueOperator", "Git.Git", "Google.Drive", "Microsoft.DirectX", "Microsoft.VCRedist.2015+.x64", "Microsoft.VCRedist.2015+.x86", "Microsoft.PowerShell")
 
 # System/User Directories
