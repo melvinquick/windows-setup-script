@@ -156,7 +156,7 @@ if ($user_input.ToLower() -eq "y") {
 
     # Install base apps for Scoop
     foreach ($scoop_app in $scoop_apps_base) {
-        scoop install $scoop_base_app
+        scoop install $scoop_app
     }
 
     # Add buckets for Scoop Apps you want to install
