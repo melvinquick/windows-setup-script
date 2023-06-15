@@ -8,7 +8,7 @@ $ps_modules = @("PSWindowsUpdate", "PSWordCloud")
 $scoop_apps_base = @("main/7zip", "main/git")
 $scoop_apps_main = @("nerd-fonts/FiraCode-NF", "extras/sysinternals")
 $scoop_buckets = @("extras", "nerd-fonts")
-$winget_apps = @("Elgato.4KCaptureUtility", "Epilogue.EpilogueOperator", "Git.Git", "Google.Drive", "Microsoft.DirectX", "Microsoft.VCRedist.2015+.x64", "Microsoft.VCRedist.2015+.x86", "Microsoft.PowerShell")
+$winget_apps = @("7zip.7zip", "Alacritty.Alacritty", "OrangeDrangon.AndroidMessages.Desktop", "angryziber.AngryIPScanner", "AutoHotkey.AutoHotkey", "BleachBit.BleachBit", "Brave.Brave", "SaeraSoft.CaesiumImageCompressor", "Discord.Discord", "File-New-Project.EarTrumpet", "Elgato.4KCaptureUtility", "Epilogue.EpilogueOperator", "yang991178.fluent-reader", "GIMP.GIMP", "Git.Git", "GitHub.GitHubDesktop", "Google.Drive", "HexChat.HexChat", "Inkscape.Inkscape", "JRSoftware.InnoSetup", "GuinpinSoft.MakeMKV", "JeffreyPfau.mGBA", "zyedidia.micro", "Microsoft.DirectX", "Microsoft.VCRedist.2015+.x64", "Microsoft.VCRedist.2015+.x86", "mRemoteNG.mRemoteNG", "OpenJS.NodeJS", "OBSProject.OBSStudio", "Microsoft.PowerShell", "Python.Python.3.11", "RevoUninstaller.RevoUninstaller", "Front.scrcpy+", "NickeManarin.ScreenToGif", "Starship.Starship", "Valve.Steam", "Telegram.TelegramDesktop", "ventoy.Ventoy", "VideoLAN.VLC", "Microsoft.VisualStudioCode", "WinSCP.WinSCP", "WiresharkFoundation.Wireshark", "Zoom.Zoom")
 
 # System/User Directories
 $conf_dir = "$HOME\Downloads\windows-config-files\home"
