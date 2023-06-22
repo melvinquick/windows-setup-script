@@ -30,7 +30,7 @@ function Install-Chocolatey {
 # Winget (I took this section from Chris Titus Tech's WinUtil located here: https://github.com/ChrisTitusTech/winutil/blob/main/winutil.ps1) and modified it VERY slightly, so shoutout to him!)
 function Install-Winget {
     # Gets the computer's information
-    $computer_info = Get-computer_info
+    $computer_info = Get-ComputerInfo
 
     # Gets the Windows Edition
     if ($computer_info.os_name) {
@@ -53,7 +53,7 @@ function Install-Winget {
         
     }
 
-    elseif (((Get-computer_info).WindowsVersion) -lt "1809") {
+    elseif ((($computer_info).WindowsVersion) -lt "1809") {
         # Checks if Windows Version is too old for winget
         Write-Host "Winget is not supported on this version of Windows (Pre-1809)."
     }
