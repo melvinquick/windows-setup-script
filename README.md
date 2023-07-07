@@ -27,7 +27,7 @@ To run, open PowerShell as an admin user and copy/paste the following code block
 
 ## Coming Soon :construction:
 
-- Nothing for now!
+- Ability to decide which apps from my preferred list to install
 
 ## Completed :white_check_mark:
 
