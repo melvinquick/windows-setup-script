@@ -4,10 +4,9 @@
 $conf_url = "https://github.com/cquick00/windows-config-files.git"
 
 # App Install Lists
-$ps_modules = @("PSWindowsUpdate", "PSWordCloud")
 $chocolatey_apps = @("nerd-fonts-firacode", "sysinternals")
-$scoop_apps_base = @("main/7zip", "main/git")
-$winget_apps = @("7zip.7zip", "Alacritty.Alacritty", "OrangeDrangon.AndroidMessages.Desktop", "angryziber.AngryIPScanner", "AutoHotkey.AutoHotkey", "BleachBit.BleachBit", "Brave.Brave", "Discord.Discord", "File-New-Project.EarTrumpet", "Epilogue.EpilogueOperator", "yang991178.fluent-reader", "Git.Git", "GitHub.GitHubDesktop", "Google.GoogleDrive", "JRSoftware.InnoSetup", "GuinpinSoft.MakeMKV", "JeffreyPfau.mGBA", "zyedidia.micro", "Microsoft.DirectX", "Microsoft.VCRedist.2015+.x64", "Microsoft.VCRedist.2015+.x86", "OpenJS.NodeJS", "OBSProject.OBSStudio", "Microsoft.PowerShell", "PuTTY.PuTTY", "Python.Python.3.12", "RevoUninstaller.RevoUninstaller", "Front.scrcpy+", "NickeManarin.ScreenToGif", "Starship.Starship", "Valve.Steam", "ventoy.Ventoy", "VideoLAN.VLC", "VMware.HorizonClient", "Microsoft.VisualStudioCode", "WinSCP.WinSCP", "Zoom.Zoom")
+$scoop_apps = @("main/7zip", "main/git")
+$winget_apps = @("7zip.7zip", "Alacritty.Alacritty", "OrangeDrangon.AndroidMessages.Desktop", "angryziber.AngryIPScanner", "AutoHotkey.AutoHotkey", "BleachBit.BleachBit", "Brave.Brave", "Discord.Discord", "File-New-Project.EarTrumpet", "VladimirYakovlev.ElectronMail", "Epilogue.EpilogueOperator", "yang991178.fluent-reader", "Git.Git", "GitHub.GitHubDesktop", "GuinpinSoft.MakeMKV", "JeffreyPfau.mGBA", "zyedidia.micro", "Microsoft.DirectX", "Microsoft.VCRedist.2015+.x64", "Microsoft.VCRedist.2015+.x86", "Microsoft.PowerShell", "mRemoteNG.mRemoteNG", "PuTTY.PuTTY", "Python.Python.3.12", "RevoUninstaller.RevoUninstaller", "Front.scrcpy+", "NickeManarin.ScreenToGif", "Starship.Starship", "Valve.Steam", "ventoy.Ventoy", "VideoLAN.VLC", "VMware.HorizonClient", "Microsoft.VisualStudioCode", "WinSCP.WinSCP")
 
 # System/User Directories
 $conf_dir = "$HOME\Downloads\windows-config-files\home"
@@ -162,7 +161,7 @@ if ($user_input.ToLower() -eq "y") {
     }
 
     # Install base apps for Scoop
-    foreach ($scoop_app in $scoop_apps_base) {
+    foreach ($scoop_app in $scoop_apps) {
         scoop install $scoop_app
     }
     #endRegion
@@ -202,12 +201,6 @@ if ($user_input.ToLower() -eq "y") {
 
     # Set PSGallery as Trusted Repository
     Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
-
-    # Install PowerShell Modules
-    foreach ($psModule in $ps_modules) {
-        Install-Module $psModule
-    }
-    #endRegion
 
     # --- Cleanup --- #
     #region
