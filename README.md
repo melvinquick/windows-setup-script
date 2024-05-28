@@ -10,11 +10,15 @@ The goal of this script is to be the ultimate Windows Setup Tool... Not only for
 
 ## Instructions
 
-To run, open PowerShell as an admin user and copy/paste the following line into it, then hit enter:
+To run, open PowerShell as an admin user and copy/paste the following code block into it, then hit enter:
 
-  ```
-  IWR run.windowssetupscript.com | IEX
-  ```
+```
+Invoke-WebRequest -Uri zip.windowssetupscript.com -OutFile $HOME\Downloads\windows-setup-script.zip
+Expand-Archive -Path $HOME\Downloads\windows-setup-script.zip -DestinationPath $HOME\Downloads\windows-setup-script
+Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope Process
+Set-Location -Path $HOME\Downloads
+  .\windows-setup-script\windows-setup-script-main\windows-setup-script.ps1
+```
 
 **Disclaimer:** This project is currently undergoing a full overhaul. As such, I am not responsible for anything being broken in the project currently, or breaking your current system. As always, PLEASE read the code yourself if you run into problems and open an issue if you can!
 
