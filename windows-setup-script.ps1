@@ -1,7 +1,7 @@
 # * Imports
-Import-Module .\"app-install-helpers\chocolatey-install.psm1"
-Import-Module .\"app-install-helpers\winget-install.psm1"
-Import-Module .\"app-install-helpers\scoop-install.psm1"
+Import-Module "$PSScriptRoot\app-install-helpers\chocolatey-install.psm1"
+Import-Module "$PSScriptRoot\app-install-helpers\winget-install.psm1"
+Import-Module "$PSScriptRoot\app-install-helpers\scoop-install.psm1"
 
 # * Variables
 
@@ -9,9 +9,9 @@ Import-Module .\"app-install-helpers\scoop-install.psm1"
 $conf_url = "https://github.com/melvinquick/windows-config-files.git"
 
 # App Install Lists
-$chocolatey_apps = Get-Content -Path "app-install-lists\chocolatey-apps-list.txt"
-$scoop_apps = Get-Content -Path "app-install-lists\scoop-apps-list.txt"
-$winget_apps = Get-Content -Path "app-install-lists\winget-apps-list.txt"
+$chocolatey_apps = Get-Content -Path "$PSScriptRoot\app-install-lists\chocolatey-apps-list.txt"
+$scoop_apps = Get-Content -Path "$PSScriptRoot\app-install-lists\scoop-apps-list.txt"
+$winget_apps = Get-Content -Path "$PSScriptRoot\app-install-lists\winget-apps-list.txt"
 
 # System/User Directories
 $conf_dir = "$HOME\Downloads\windows-config-files\home"
