@@ -1,0 +1,3 @@
+main/7zip
+main/fastfetch
+main/git
