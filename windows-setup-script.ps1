@@ -1,77 +1,23 @@
-# --- Variables --- #
+# * Imports
+Import-Module .\chocolatey-install.psm1
+Import-Module .\winget-install.psm1
+Import-Module .\scoop-install.psm1
+
+# * Variables
 
 # URLs
-$conf_url = "https://github.com/cquick00/windows-config-files.git"
+$conf_url = "https://github.com/melvinquick/windows-config-files.git"
 
 # App Install Lists
-$chocolatey_apps = @("nerd-fonts-firacode", "sysinternals")
-$scoop_apps = @("main/7zip", "main/fastfetch" , "main/git")
-$winget_apps = @("7zip.7zip", "Alacritty.Alacritty", "OrangeDrangon.AndroidMessages.Desktop", "angryziber.AngryIPScanner", "AutoHotkey.AutoHotkey", "BleachBit.BleachBit", "Discord.Discord", "File-New-Project.EarTrumpet", "VladimirYakovlev.ElectronMail", "Epilogue.EpilogueOperator", "yang991178.fluent-reader", "Git.Git", "GuinpinSoft.MakeMKV", "JeffreyPfau.mGBA", "zyedidia.micro", "Microsoft.DirectX", "Microsoft.VCRedist.2015+.x64", "Microsoft.VCRedist.2015+.x86", "Microsoft.PowerShell", "mRemoteNG.mRemoteNG", "Python.Python.3.12", "RevoUninstaller.RevoUninstaller", "Front.scrcpy+", "NickeManarin.ScreenToGif", "Starship.Starship", "Valve.Steam", "ventoy.Ventoy", "VideoLAN.VLC", "VMware.HorizonClient", "Microsoft.VisualStudioCode", "Waterfox.Waterfox")
+$chocolatey_apps = Get-Content -Path chocolatey-apps-list.txt
+$scoop_apps = Get-Content -Path scoop-apps-list.txt
+$winget_apps = Get-Content -Path winget-apps-list.txt
 
 # System/User Directories
 $conf_dir = "$HOME\Downloads\windows-config-files\home"
 $working_dir = "$HOME\Downloads"
 
-# Miscellaneous
-$user_input = ""
-$sleep_time = 5
-
-# --- Functions --- #
-
-# Chocolatey
-function Install-Chocolatey {
-    [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
-    Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1')) | Out-Null
-    Write-Host "Chocolatey has been installed."
-}
-
-# Winget (I took this section from Chris Titus Tech's WinUtil located here: https://github.com/ChrisTitusTech/winutil/blob/main/winutil.ps1) and modified it VERY slightly, so shoutout to him!)
-function Install-Winget {
-    # Gets the computer's information
-    $computer_info = Get-ComputerInfo
-
-    # Gets the Windows Edition
-    if ($computer_info.os_name) {
-        $os_name = $computer_info.os_name
-    }
-
-    else {
-        $os_name = $computer_info.WindowsProductName
-    }
-
-    # Determines how to go about installing Winget based on the Windows Edition found
-    if (((($os_name.IndexOf("LTSC")) -ne -1) -or ($os_name.IndexOf("Server") -ne -1)) -and (($computer_info.WindowsVersion) -ge "1809")) {
-        
-        Write-Host "Running Alternative Installer for LTSC/Server Editions.."
-
-        # Switching to winget-install from PSGallery from asheroto
-        # Source: https://github.com/asheroto/winget-installer
-        
-        Start-Process powershell.exe -Verb RunAs -ArgumentList "-command irm https://raw.githubusercontent.com/asheroto/winget-installer/master/winget-install.ps1 | iex | Out-Host" -WindowStyle Normal
-        
-    }
-
-    elseif ((($computer_info).WindowsVersion) -lt "1809") {
-        # Checks if Windows Version is too old for winget
-        Write-Host "Winget is not supported on this version of Windows (Pre-1809)."
-    }
-
-    else {
-        # Installing Winget from the Microsoft Store
-        Write-Host "Winget not found, installing it now..."
-        Start-Process "ms-appinstaller:?source=https://aka.ms/getwinget"
-        $nid = (Get-Process AppInstaller).Id
-        Wait-Process -Id $nid
-        Write-Host "Winget Installed."
-    }
-}
-
-# Scoop
-function Install-Scoop {
-    Invoke-Expression "& {$(Invoke-RestMethod get.scoop.sh)} -RunAsAdmin"    
-}
-
-# --- Introduction --- #
+# * Introduction
 
 Write-Host "# --- Introduction --- #" -ForegroundColor Green
 
@@ -82,7 +28,7 @@ Write-Host "`nThis script downloads and installs programs, moves my configs for 
 Write-Host "Please read through the script BEFORE executing it to make sure it doesn't do anything you don't want it to!"
 $user_input = Read-Host "Would you like to run the setup? (y/n)"
 
-# --- Main --- #
+# * Main
 
 Write-Host "`n# --- Main --- #" -ForegroundColor Green
 
@@ -92,44 +38,19 @@ if ($user_input.ToLower() -eq "y") {
     Write-Host "`nSetting the working directory for the script."
     Set-Location -Path $working_dir
 
-    # --- Chocolatey --- # 
+    # * Chocolatey
     Write-Host "`n# --- Chocolatey --- #" -ForegroundColor Green
-
-    # Check if Chocolatey is installed already
-    Write-Host "`nChecking to see if Chocolatey is installed..."
-
-    if (Test-Path -Path "C:\ProgramData\chocolatey\choco.exe") {
-        Write-Host "Chocolatey is already installed."
-    }
-
-    else {
-        Write-Host "Chocolatey was not installed. Downloading and installing now..."
-        Install-Chocolatey
-    }
-
+    Install-Chocolatey
     Write-Host "Installing programs via Chocolatey..."
 
-    # Install apps with Winget
+    # Install apps with Chocolatey
     foreach ($chocolatey_app in $chocolatey_apps) {
         choco install $chocolatey_app -y
     }  
 
-    # --- Winget --- #
-
+    # * Winget
     Write-Host "`n# --- Winget --- #" -ForegroundColor Green
-
-    # Check if Winget is installed already and install it if not
-    Write-Host "`nChecking if Winget is Installed..."
-
-    if (Test-Path ~\AppData\Local\Microsoft\WindowsApps\winget.exe) {
-        Write-Host "Winget is already Installed."
-    }
-    else {
-        Write-Host "Winget was not installed. Downloading and installing now..."
-        Install-Winget
-        Start-Sleep -Seconds $sleep_time
-    }
-
+    Install-Winget
     Write-Host "Installing programs via Winget..."
 
     # Install apps with Winget
@@ -137,28 +58,17 @@ if ($user_input.ToLower() -eq "y") {
         winget install -e --id $winget_app --silent --accept-package-agreements --accept-source-agreements
     }
 
-    # --- Scoop --- #
-
+    # * Scoop
     Write-Host "`n# --- Scoop --- #" -ForegroundColor Green
+    Install-Scoop
+    Write-Host "Installing programs via Scoop..."
 
-    # Check if Scoop is installed already
-    Write-Host "`nChecking to see if Scoop is installed..."
-
-    if (Test-Path -Path "$HOME\scoop\apps\scoop\current\bin\scoop.ps1") {
-        Write-Host "Scoop is already installed."
-    }
-
-    else {
-        Write-Host "Scoop was not installed. Downloading and installing now..."
-        Install-Scoop
-    }
-
-    # Install base apps for Scoop
+    # Install apps with Scoop
     foreach ($scoop_app in $scoop_apps) {
         scoop install $scoop_app
     }
 
-    # --- Configs --- #
+    # * Configs
 
     Write-Host "`n# --- Configs --- #" -ForegroundColor Green
 
@@ -183,17 +93,7 @@ if ($user_input.ToLower() -eq "y") {
         Copy-Item -Path $file -Destination $destination -Force
     }
 
-    # --- PowerShell Modules --- #
-
-    Write-Host "`n# --- PowerShell Modules --- #" -ForegroundColor Green
-
-    # Set the directory back to the working directory
-    Set-Location -Path $working_dir
-
-    # Set PSGallery as Trusted Repository
-    Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
-
-    # --- Cleanup --- #
+    # * Cleanup
 
     Write-Host "`n# --- Cleanup --- #" -ForegroundColor Green
 
