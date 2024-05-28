@@ -1,5 +1,5 @@
 # --- Variables --- #
-#region
+
 # URLs
 $conf_url = "https://github.com/cquick00/windows-config-files.git"
 
@@ -15,10 +15,9 @@ $working_dir = "$HOME\Downloads"
 # Miscellaneous
 $user_input = ""
 $sleep_time = 5
-#endRegion
 
 # --- Functions --- #
-#region
+
 # Chocolatey
 function Install-Chocolatey {
     [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
@@ -71,10 +70,9 @@ function Install-Winget {
 function Install-Scoop {
     Invoke-Expression "& {$(Invoke-RestMethod get.scoop.sh)} -RunAsAdmin"    
 }
-#endRegion
 
 # --- Introduction --- #
-#region
+
 Write-Host "# --- Introduction --- #" -ForegroundColor Green
 
 # Let user know that running scripts they find online can be dangerous and that they should proceed with caution
@@ -83,10 +81,9 @@ Write-Host "`nWelcome to your new Windows Setup Script!" -ForegroundColor Green
 Write-Host "`nThis script downloads and installs programs, moves my configs for various programs to their correct locations, and a few other things."
 Write-Host "Please read through the script BEFORE executing it to make sure it doesn't do anything you don't want it to!"
 $user_input = Read-Host "Would you like to run the setup? (y/n)"
-#endRegion
 
 # --- Main --- #
-#region
+
 Write-Host "`n# --- Main --- #" -ForegroundColor Green
 
 if ($user_input.ToLower() -eq "y") {
@@ -95,8 +92,7 @@ if ($user_input.ToLower() -eq "y") {
     Write-Host "`nSetting the working directory for the script."
     Set-Location -Path $working_dir
 
-    # --- Chocolatey --- #
-    #region  
+    # --- Chocolatey --- # 
     Write-Host "`n# --- Chocolatey --- #" -ForegroundColor Green
 
     # Check if Chocolatey is installed already
@@ -116,12 +112,10 @@ if ($user_input.ToLower() -eq "y") {
     # Install apps with Winget
     foreach ($chocolatey_app in $chocolatey_apps) {
         choco install $chocolatey_app -y
-    }
-    #endRegion
-    #endRegion   
+    }  
 
     # --- Winget --- #
-    #region  
+
     Write-Host "`n# --- Winget --- #" -ForegroundColor Green
 
     # Check if Winget is installed already and install it if not
@@ -142,10 +136,9 @@ if ($user_input.ToLower() -eq "y") {
     foreach ($winget_app in $winget_apps) {
         winget install -e --id $winget_app --silent --accept-package-agreements --accept-source-agreements
     }
-    #endRegion
 
     # --- Scoop --- #
-    #region
+
     Write-Host "`n# --- Scoop --- #" -ForegroundColor Green
 
     # Check if Scoop is installed already
@@ -164,10 +157,9 @@ if ($user_input.ToLower() -eq "y") {
     foreach ($scoop_app in $scoop_apps) {
         scoop install $scoop_app
     }
-    #endRegion
 
     # --- Configs --- #
-    #region
+
     Write-Host "`n# --- Configs --- #" -ForegroundColor Green
 
     # Git clone repo
@@ -190,10 +182,9 @@ if ($user_input.ToLower() -eq "y") {
         }
         Copy-Item -Path $file -Destination $destination -Force
     }
-    #endRegion
 
     # --- PowerShell Modules --- #
-    #region
+
     Write-Host "`n# --- PowerShell Modules --- #" -ForegroundColor Green
 
     # Set the directory back to the working directory
@@ -203,7 +194,7 @@ if ($user_input.ToLower() -eq "y") {
     Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
 
     # --- Cleanup --- #
-    #region
+
     Write-Host "`n# --- Cleanup --- #" -ForegroundColor Green
 
     # Delete desktop icons and temp folder files that were created during the process of running this script
@@ -216,7 +207,7 @@ if ($user_input.ToLower() -eq "y") {
     # Clear the recycle bin
     Write-Host "Emptying the Recycle Bin..."
     Clear-RecycleBin -Force
-    #endRegion
+
 }
 
 elseif ($user_input.ToLower() -eq "n") {
@@ -227,4 +218,3 @@ else {
     Write-Host "`nInvalid input. Starting the script over again!`n" -ForegroundColor Yellow
     .\"windows-setup-script.ps1"
 }
-#endRegion
