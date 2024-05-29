@@ -25,4 +25,3 @@ Set-Location -Path $HOME\Downloads
 ## Useful Information
 
 - [Project Goals](https://github.com/users/melvinquick/projects/4/views/1)
-
