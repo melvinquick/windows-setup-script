@@ -4,7 +4,7 @@
 
 - Do not open up a GitHub issue if the bug is a security vulnerability, and instead to refer to our [Security Policy](https://github.com/melvinquick/windows-setup-script/security/policy).
 
-- Ensure the bug was not already reported by searching on GitHub under [Issues](https://github.com/melvinquick/scramble-generator/issues).
+- Ensure the bug was not already reported by searching on GitHub under [Issues](https://github.com/melvinquick/windows-setup-script/issues).
 
 - If you're unable to find an open issue addressing the problem, [open a new bug report](https://github.com/melvinquick/windows-setup-script/issues/new?assignees=&labels=&projects=&template=bug_report.md&title=). Be sure to include a title and clear description of the issue, as much relevant information as possible, and a code sample or an executable test case demonstrating the expected behavior that is not occurring.
 
@@ -24,7 +24,7 @@
 
 #### Any other questions/comments/concerns?
 
-- Please feel free to open an [issue](https://github.com/melvinquick/scramble-generator/issues) with the question label and we will respond as soon as we can!
+- Please feel free to open an [issue](https://github.com/melvinquick/windows-setup-script/issues) with the question label and we will respond as soon as we can!
 
 App made with :heart:,
 
