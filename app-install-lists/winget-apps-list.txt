@@ -1,4 +1,4 @@
-"7zip.7zip
+7zip.7zip
 Alacritty.Alacritty
 OrangeDrangon.AndroidMessages.Desktop
 angryziber.AngryIPScanner
