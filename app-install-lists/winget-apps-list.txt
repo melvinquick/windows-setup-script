@@ -22,6 +22,7 @@ Python.Python.3.12
 RevoUninstaller.RevoUninstaller
 Front.scrcpy+
 NickeManarin.ScreenToGif
+SQLite.SQLite
 Starship.Starship
 Valve.Steam
 ventoy.Ventoy
