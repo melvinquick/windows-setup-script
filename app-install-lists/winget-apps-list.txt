@@ -4,6 +4,7 @@ OrangeDrangon.AndroidMessages.Desktop
 angryziber.AngryIPScanner
 AutoHotkey.AutoHotkey
 BleachBit.BleachBit
+DBBrowserForSQLite.DBBrowserForSQLite
 dbeaver.dbeaver
 Discord.Discord
 File-New-Project.EarTrumpet
