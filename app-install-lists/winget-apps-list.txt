@@ -30,5 +30,6 @@ Valve.Steam
 ventoy.Ventoy
 VideoLAN.VLC
 VMware.HorizonClient
+Olivia.VIA
 Microsoft.VisualStudioCode
 Waterfox.Waterfox
