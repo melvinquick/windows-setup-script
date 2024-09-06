@@ -61,6 +61,14 @@ if ($user_input.ToLower() -eq "y") {
     # * Scoop
     Write-Host "`n# --- Scoop --- #" -ForegroundColor Green
     Install-Scoop
+
+    Write-Host "Installing extra Buckets for Scoop..."
+
+    # Install apps with Scoop
+    foreach ($scoop_bucket in $scoop_buckets) {
+        scoop bucket add $scoop_bucket
+    }
+
     Write-Host "Installing programs via Scoop..."
 
     # Install apps with Scoop
