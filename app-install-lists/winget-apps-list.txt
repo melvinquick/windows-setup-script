@@ -6,7 +6,6 @@ AutoHotkey.AutoHotkey
 BleachBit.BleachBit
 DBBrowserForSQLite.DBBrowserForSQLite
 dbeaver.dbeaver
-Discord.Discord
 File-New-Project.EarTrumpet
 VladimirYakovlev.ElectronMail
 Epilogue.EpilogueOperator
