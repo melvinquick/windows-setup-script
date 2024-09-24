@@ -12,6 +12,7 @@ Epilogue.EpilogueOperator
 yang991178.fluent-reader
 Git.Git
 GuinpinSoft.MakeMKV
+HeroicGamesLauncher.HeroicGamesLauncher
 JeffreyPfau.mGBA
 zyedidia.micro
 Microsoft.DirectX
