@@ -2,6 +2,7 @@
 Import-Module "$PSScriptRoot\app-install-helpers\chocolatey-install.psm1"
 Import-Module "$PSScriptRoot\app-install-helpers\winget-install.psm1"
 Import-Module "$PSScriptRoot\app-install-helpers\scoop-install.psm1"
+Import-Module "$PSScriptRoot\app-install-helpers\python-poetry.ps1"
 
 # * Variables
 
@@ -37,6 +38,10 @@ if ($user_input.ToLower() -eq "y") {
     # Set working directory for script
     Write-Host "`nSetting the working directory for the script."
     Set-Location -Path $working_dir
+
+    # * Poetry
+    Write-Host "`n# --- Poetry --- #" -ForegroundColor Green
+    Install-Poetry
 
     # * Chocolatey
     Write-Host "`n# --- Chocolatey --- #" -ForegroundColor Green
