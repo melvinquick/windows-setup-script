@@ -1,6 +1,6 @@
 <p align="center"> <img src="/images/windows-setup-script-with-text.png" /> </p>
 
-## Depracated
+## Deprecated
 
 As much as I enjoyed writing this project, I don't use Windows anymore and don't want to maintain this. If somebody wants to fork it and keep it alive, then please do!!
 
