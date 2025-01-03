@@ -1,5 +1,9 @@
 <p align="center"> <img src="/images/windows-setup-script-with-text.png" /> </p>
 
+## Depracated
+
+As much as I enjoyed writing this project, I don't use Windows anymore and don't want to maintain this. If somebody wants to fork it and keep it alive, then please do!!
+
 ## Donations
 
 [<img src="https://img.shields.io/badge/Sponsor-%E2%99%A5-gray?style=for-the-badge&logo=GitHub" alt="Static Badge" width="165" height="40">](https://github.com/sponsors/melvinquick) <a href="https://www.buymeacoffee.com/KingKairos" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-green.png" alt="Buy Me A Coffee" style="height: 40px !important;width: 165px !important;" ></a>
